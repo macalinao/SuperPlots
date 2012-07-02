@@ -14,7 +14,9 @@ public class PlotTest {
 
     @Before
     public void setUp() {
-        plot = new Plot();
+        World world = mock(World.class);
+        Location center = new Location(world, 3, 4, 5);
+        plot = new Plot(1, "My Plot", "albireox", center);
     }
 
     @After
@@ -46,10 +48,7 @@ public class PlotTest {
 
     @Test
     public void test_distanceSquared() {
-        World world = mock(World.class);
-        Location center = new Location(world, 3, 4, 5);
-        plot.setCenter(center);
-        Location me = new Location(world, 0, 0, 5);
+        Location me = new Location(plot.getCenter().getWorld(), 0, 0, 5);
 
         double expected = 5.0;
         double result = plot.distanceSquared(me);
@@ -59,11 +58,8 @@ public class PlotTest {
 
     @Test
     public void test_edgeDistanceSquared() {
-        World world = mock(World.class);
-        Location center = new Location(world, 3, 4, 5);
-        plot.setCenter(center);
         plot.setSize(1);
-        Location me = new Location(world, 0, 0, 5);
+        Location me = new Location(plot.getCenter().getWorld(), 0, 0, 5);
 
         double expected = 4.0;
         double result = plot.edgeDistanceSquared(me);

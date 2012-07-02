@@ -10,6 +10,11 @@ import org.bukkit.Location;
  */
 public class Plot {
     /**
+     * The unique id of the plot.
+     */
+    private final int id;
+
+    /**
      * Name of the plot.
      */
     private String name;
@@ -22,22 +27,22 @@ public class Plot {
     /**
      * Set of coowners of the plot.
      */
-    private Set<String> coowners;
+    private Set<String> coowners = new HashSet<String>();
 
     /**
      * Set of friends of the plot.
      */
-    private Set<String> friends;
+    private Set<String> friends = new HashSet<String>();
 
     /**
      * Funds of the plot.
      */
-    private int funds;
+    private int funds = 0;
 
     /**
      * Size of the plot.
      */
-    private int size;
+    private int size = 0;
 
     /**
      * Center of the plot.
@@ -47,9 +52,20 @@ public class Plot {
     /**
      * @see PlotManager#createPlot
      */
-    Plot() {
+    Plot(int id, String name, String owner, Location center) {
+        this.id = id;
+        this.name = name;
+        this.owner = owner;
+        this.center = center;
     }
-    
+
+    /**
+     * @return the id
+     */
+    public int getId() {
+        return id;
+    }
+
     /**
      * @return the name
      */
@@ -168,17 +184,19 @@ public class Plot {
     public void setFunds(int funds) {
         this.funds = funds;
     }
-    
+
     /**
      * Adds funds to the plot.
+     * 
      * @param funds
      */
     public void addFunds(int funds) {
         setFunds(getFunds() + funds);
     }
-    
+
     /**
      * Subtracts funds from the plot.
+     * 
      * @param funds
      */
     public void subtractFunds(int funds) {
@@ -235,24 +253,26 @@ public class Plot {
     public double edgeDistanceSquared(Location other) {
         return distanceSquared(other) - (double) size;
     }
-    
+
     /**
      * Expands the plot by one.
      */
     public void expand() {
         expand(1);
     }
-    
+
     /**
      * Expands the plot by the given amount.
+     * 
      * @param amount
      */
     public void expand(int amount) {
         setSize(getSize() + amount);
     }
-    
+
     /**
      * Shrinks the plot by the given amount.
+     * 
      * @param amount
      */
     public void shrink(int amount) {

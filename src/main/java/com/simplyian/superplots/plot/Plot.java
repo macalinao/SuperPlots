@@ -5,6 +5,8 @@ import java.util.Set;
 
 import org.bukkit.Location;
 
+import com.simplyian.superplots.SuperPlots;
+
 /**
  * Represents an ownable piece of land.
  */
@@ -250,6 +252,19 @@ public class Plot {
      */
     public double edgeDistance(Location other) {
         return distance(other) - (double) getSize();
+    }
+
+    /**
+     * Gets the distance between the closest edge of the influence of this plot
+     * and the given location.
+     * 
+     * @param location
+     * @return
+     */
+    public double influenceEdgeDistance(Location location) {
+        return edgeDistance(location)
+                * SuperPlots.getInstance().getSettings()
+                        .getInfluenceMultiplier();
     }
 
     /**

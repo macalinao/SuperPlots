@@ -5,6 +5,7 @@ author: AlbireoX
 website: http://simplyian.com/
 
 main: com.simplyian.superplots.SuperPlots
+depend: ["Vault"]
 
 commands:
   plot:

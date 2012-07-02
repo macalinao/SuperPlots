@@ -9,4 +9,8 @@ public class PlotManager {
         return null;
     }
     
+    public Plot createPlot() {
+        return null;
+    }
+    
 }

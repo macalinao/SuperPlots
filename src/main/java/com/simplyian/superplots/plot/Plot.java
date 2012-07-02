@@ -45,6 +45,12 @@ public class Plot {
     private Location center;
 
     /**
+     * @see PlotManager#createPlot
+     */
+    Plot() {
+    }
+    
+    /**
      * @return the name
      */
     public String getName() {
@@ -162,6 +168,22 @@ public class Plot {
     public void setFunds(int funds) {
         this.funds = funds;
     }
+    
+    /**
+     * Adds funds to the plot.
+     * @param funds
+     */
+    public void addFunds(int funds) {
+        setFunds(getFunds() + funds);
+    }
+    
+    /**
+     * Subtracts funds from the plot.
+     * @param funds
+     */
+    public void subtractFunds(int funds) {
+        setFunds(getFunds() - funds);
+    }
 
     /**
      * @return the size
@@ -212,5 +234,28 @@ public class Plot {
      */
     public double edgeDistanceSquared(Location other) {
         return distanceSquared(other) - (double) size;
+    }
+    
+    /**
+     * Expands the plot by one.
+     */
+    public void expand() {
+        expand(1);
+    }
+    
+    /**
+     * Expands the plot by the given amount.
+     * @param amount
+     */
+    public void expand(int amount) {
+        setSize(getSize() + amount);
+    }
+    
+    /**
+     * Shrinks the plot by the given amount.
+     * @param amount
+     */
+    public void shrink(int amount) {
+        setSize(getSize() - amount);
     }
 }

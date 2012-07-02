@@ -1,2 +1,4 @@
 language: java
+before_script:
+  - mysql -e 'create database pirates_test;'
 

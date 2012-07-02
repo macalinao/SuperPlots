@@ -10,11 +10,6 @@ import org.bukkit.Location;
  */
 public class Plot {
     /**
-     * The unique id of the plot.
-     */
-    private final int id;
-
-    /**
      * Name of the plot.
      */
     private String name;
@@ -42,7 +37,7 @@ public class Plot {
     /**
      * Size of the plot.
      */
-    private int size = 0;
+    private int size;
 
     /**
      * Center of the plot.
@@ -52,18 +47,11 @@ public class Plot {
     /**
      * @see PlotManager#createPlot
      */
-    Plot(int id, String name, String owner, Location center) {
-        this.id = id;
+    Plot(String name, String owner, int size, Location center) {
         this.name = name;
         this.owner = owner;
+        this.size = size;
         this.center = center;
-    }
-
-    /**
-     * @return the id
-     */
-    public int getId() {
-        return id;
     }
 
     /**
@@ -234,24 +222,34 @@ public class Plot {
     }
 
     /**
+     * Gets the distance between this plot and the given location.
+     * 
+     * @param other
+     * @return
+     */
+    public double distance(Location other) {
+        return center.distance(other);
+    }
+
+    /**
      * Gets the distance squared between this plot and the given location.
      * 
      * @param other
      * @return
      */
     public double distanceSquared(Location other) {
-        return center.distance(other);
+        return center.distanceSquared(other);
     }
 
     /**
-     * Gets the distance squared between the closest edge of this plot and the
-     * given location.
+     * Gets the distance between the closest edge of this plot and the given
+     * location.
      * 
      * @param other
      * @return
      */
-    public double edgeDistanceSquared(Location other) {
-        return distanceSquared(other) - (double) size;
+    public double edgeDistance(Location other) {
+        return distance(other) - (double) getSize();
     }
 
     /**
@@ -277,5 +275,15 @@ public class Plot {
      */
     public void shrink(int amount) {
         setSize(getSize() - amount);
+    }
+
+    /**
+     * Returns true if the plot contains the given location.
+     * 
+     * @param location
+     * @return
+     */
+    public boolean contains(Location location) {
+        return distanceSquared(location) < (getSize() * getSize());
     }
 }

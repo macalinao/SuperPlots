@@ -16,6 +16,32 @@ public class PlotManager {
         this.main = main;
     }
 
+    /**
+     * Gets the closest plot at the given location. Uses edge distance, so it's
+     * EXPENSIVE!
+     * 
+     * @param location
+     * @return
+     */
+    public Plot getClosestPlotAt(Location location) {
+        double closestDist = 1000000000000.0;
+        Plot closest = null;
+        for (Plot plot : plots) {
+            double dist = plot.edgeDistance(location);
+            if (dist < closestDist) {
+                closestDist = dist;
+                closest = plot;
+            }
+        }
+        return closest;
+    }
+
+    /**
+     * Gets the plot at the given location.
+     * 
+     * @param location
+     * @return
+     */
     public Plot getPlotAt(Location location) {
         for (Plot plot : plots) {
             if (plot.contains(location)) {
@@ -25,6 +51,15 @@ public class PlotManager {
         return null;
     }
 
+    /**
+     * Creates a plot.
+     * 
+     * @param name
+     * @param owner
+     * @param size
+     * @param center
+     * @return
+     */
     public Plot createPlot(String name, String owner, int size, Location center) {
         Plot plot = new Plot(name, owner, size, center);
         plots.add(plot);

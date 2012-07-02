@@ -17,7 +17,6 @@ Copyright (c) 2012 Ian Macalinao
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <powermock.version>1.4.10</powermock.version>
     </properties>    
     
     <licenses>
@@ -33,11 +32,6 @@ Copyright (c) 2012 Ian Macalinao
             <id>bukkit</id>
             <name>bukkit</name>
             <url>http://repo.bukkit.org/content/groups/public/</url>
-        </repository>
-        <repository>
-            <id>spout-repo</id>
-            <name>Spout Nexus</name>
-            <url>http://repo.getspout.org/content/groups/snapshots/</url>
         </repository>
     </repositories>
     <pluginRepositories>
@@ -65,14 +59,14 @@ Copyright (c) 2012 Ian Macalinao
         <dependency>
             <groupId>org.powermock</groupId>
             <artifactId>powermock-module-junit4</artifactId>
-            <version>${powermock.version}</version>
+            <version>1.4.12</version>
             <scope>test</scope>
             <type>jar</type>
         </dependency>
         <dependency>
             <groupId>org.powermock</groupId>
             <artifactId>powermock-api-mockito</artifactId>
-            <version>${powermock.version}</version>
+            <version>1.4.12</version>
             <scope>test</scope>
             <type>jar</type>
         </dependency>

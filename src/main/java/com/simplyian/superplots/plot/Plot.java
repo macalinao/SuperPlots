@@ -172,4 +172,25 @@ public class Plot {
     public void setCenter(Location center) {
         this.center = center;
     }
+
+    /**
+     * Gets the distance squared between this plot and the given location.
+     * 
+     * @param other
+     * @return
+     */
+    public double distanceSquared(Location other) {
+        return center.distance(other);
+    }
+
+    /**
+     * Gets the distance squared between the closest edge of this plot and the
+     * given location.
+     * 
+     * @param other
+     * @return
+     */
+    public double edgeDistanceSquared(Location other) {
+        return distanceSquared(other) - (double) size;
+    }
 }

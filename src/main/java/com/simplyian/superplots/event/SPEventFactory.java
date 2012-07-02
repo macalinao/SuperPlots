@@ -32,6 +32,10 @@ public class SPEventFactory {
         return callEvent(new PlotCreateEvent(plot));
     }
 
+    public PlotDestroyEvent callPlotDestroyEvent(Plot plot) {
+        return callEvent(new PlotDestroyEvent(plot));
+    }
+
     private <T extends Event> T callEvent(T event) {
         main.getServer().getPluginManager().callEvent(event);
         return event;

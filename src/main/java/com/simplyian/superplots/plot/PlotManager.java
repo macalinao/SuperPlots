@@ -83,6 +83,7 @@ public class PlotManager {
      * @return True if the plot was in this plot manager
      */
     public boolean destroyPlot(Plot plot) {
+        main.getEventFactory().callPlotDestroyEvent(plot);
         return plots.remove(plot);
     }
 

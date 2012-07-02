@@ -5,6 +5,7 @@ import java.util.logging.Level;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import com.simplyian.superplots.event.SPEventFactory;
 import com.simplyian.superplots.plot.PlotManager;
 
 /**
@@ -18,8 +19,12 @@ public class SuperPlots extends JavaPlugin {
      */
     private PlotManager plotManager;
 
+    private SPEventFactory eventFactory;
+
     @Override
     public void onEnable() {
+        eventFactory = new SPEventFactory(this);
+
         getLogger().log(Level.INFO, "Setting up event listeners...");
         setupListeners();
         getLogger().log(Level.INFO, "SuperPlots enabled!");
@@ -36,5 +41,9 @@ public class SuperPlots extends JavaPlugin {
 
     public PlotManager getPlotManager() {
         return plotManager;
+    }
+
+    public SPEventFactory getEventFactory() {
+        return eventFactory;
     }
 }

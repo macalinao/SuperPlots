@@ -4,6 +4,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static org.powermock.api.mockito.PowerMockito.mock;
+import static org.powermock.api.mockito.PowerMockito.when;
 
 import org.bukkit.Location;
 import org.bukkit.World;
@@ -12,6 +13,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import com.simplyian.superplots.SuperPlots;
+import com.simplyian.superplots.event.SPEventFactory;
 
 public class PlotManagerTest {
     private PlotManager pm;
@@ -20,6 +22,9 @@ public class PlotManagerTest {
     public void setup() {
         SuperPlots main = mock(SuperPlots.class);
         pm = new PlotManager(main);
+
+        SPEventFactory eventFactory = mock(SPEventFactory.class);
+        when(main.getEventFactory()).thenReturn(eventFactory);
     }
 
     @After
@@ -74,10 +79,10 @@ public class PlotManagerTest {
         World world = mock(World.class);
         Location center = new Location(world, 0, 0, 0);
         Plot result = pm.createPlot("My Plot", "albireox", 10, center);
-        
+
         assertTrue(pm.getPlots().contains(result));
         assertTrue(pm.destroyPlot(result));
-        
+
         assertFalse(pm.getPlots().contains(result));
         assertFalse(pm.destroyPlot(result));
     }

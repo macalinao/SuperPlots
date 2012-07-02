@@ -72,6 +72,7 @@ public class PlotManager {
     public Plot createPlot(String name, String owner, int size, Location center) {
         Plot plot = new Plot(name, owner, size, center);
         plots.add(plot);
+        main.getEventFactory().callPlotCreateEvent(plot);
         return plot;
     }
 

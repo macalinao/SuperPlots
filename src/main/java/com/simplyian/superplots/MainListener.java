@@ -1,7 +1,5 @@
 package com.simplyian.superplots;
 
-import static com.simplyian.superplots.event.SPEventFactory.callPlotBuildEvent;
-
 import org.bukkit.Location;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -27,7 +25,8 @@ public class MainListener implements Listener {
         if (plot == null) {
             return;
         }
-        PlotBuildEvent ev = callPlotBuildEvent(event, plot);
+        PlotBuildEvent ev = main.getEventFactory().callPlotBuildEvent(event,
+                plot);
         if (ev.isCancelled()) {
             event.setCancelled(true);
         }
@@ -39,7 +38,8 @@ public class MainListener implements Listener {
         if (plot == null) {
             return;
         }
-        PlotBuildEvent ev = callPlotBuildEvent(event, plot);
+        PlotBuildEvent ev = main.getEventFactory().callPlotBuildEvent(event,
+                plot);
         if (ev.isCancelled()) {
             event.setCancelled(true);
         }

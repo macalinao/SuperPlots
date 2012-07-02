@@ -10,6 +10,11 @@ import org.bukkit.Location;
  */
 public class Plot {
     /**
+     * Name of the plot.
+     */
+    private String name;
+
+    /**
      * Name of the owner of the plot.
      */
     private String owner;
@@ -38,6 +43,21 @@ public class Plot {
      * Center of the plot.
      */
     private Location center;
+
+    /**
+     * @return the name
+     */
+    public String getName() {
+        return name;
+    }
+
+    /**
+     * @param name
+     *            the name to set
+     */
+    public void setName(String name) {
+        this.name = name;
+    }
 
     /**
      * @return the owner

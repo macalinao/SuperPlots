@@ -17,6 +17,15 @@ public class PlotManager {
     }
 
     /**
+     * Gets a list of all plots of this PlotManager.
+     * 
+     * @return
+     */
+    public List<Plot> getPlots() {
+        return new ArrayList<Plot>(plots);
+    }
+
+    /**
      * Gets the closest plot at the given location. Uses edge distance, so it's
      * EXPENSIVE!
      * 
@@ -64,6 +73,16 @@ public class PlotManager {
         Plot plot = new Plot(name, owner, size, center);
         plots.add(plot);
         return plot;
+    }
+
+    /**
+     * Removes a plot from the system.
+     * 
+     * @param plot
+     * @return True if the plot was in this plot manager
+     */
+    public boolean destroyPlot(Plot plot) {
+        return plots.remove(plot);
     }
 
 }

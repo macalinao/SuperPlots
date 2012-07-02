@@ -1,6 +1,8 @@
 package com.simplyian.superplots.plot;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 import static org.powermock.api.mockito.PowerMockito.mock;
 
 import org.bukkit.Location;
@@ -65,5 +67,18 @@ public class PlotManagerTest {
         assertEquals("albireox", result.getOwner());
         assertEquals(10, result.getSize());
         assertEquals(center, result.getCenter());
+    }
+
+    @Test
+    public void test_destroyPlot() {
+        World world = mock(World.class);
+        Location center = new Location(world, 0, 0, 0);
+        Plot result = pm.createPlot("My Plot", "albireox", 10, center);
+        
+        assertTrue(pm.getPlots().contains(result));
+        assertTrue(pm.destroyPlot(result));
+        
+        assertFalse(pm.getPlots().contains(result));
+        assertFalse(pm.destroyPlot(result));
     }
 }

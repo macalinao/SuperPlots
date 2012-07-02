@@ -1,0 +1,14 @@
+name: ${project.name}
+description: ${project.description}
+version: 0.0.1
+author: AlbireoX
+website: http://simplyian.com/
+
+main: com.simplyian.superplots.SuperPlots
+
+commands:
+  plot:
+    description: Plot base command.
+    aliases: [p]
+    usage: /plot [action]
+

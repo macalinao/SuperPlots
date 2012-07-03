@@ -62,35 +62,37 @@ public class ActionDisbandTest {
 
         verify(player).sendMessage(contains("not in a plot"));
     }
-    
+
     @Test
     public void test_perform_mustBeOwner() {
         World world = mock(World.class);
         Location playerLoc = new Location(world, 0, 0, 0);
+        when(player.getLocation()).thenReturn(playerLoc);
         Plot plot = mock(Plot.class);
         when(plotManager.getPlotAt(playerLoc)).thenReturn(plot);
         when(plot.isOwner("albireox")).thenReturn(false);
         when(player.getName()).thenReturn("albireox");
-        
+
         List<String> args = Arrays.asList("asdf");
         action.perform(player, args);
 
         verify(player).sendMessage(contains("must be the owner"));
     }
-    
+
     @Test
     public void test_perform_success() {
         World world = mock(World.class);
         Location playerLoc = new Location(world, 0, 0, 0);
+        when(player.getLocation()).thenReturn(playerLoc);
         Plot plot = mock(Plot.class);
         when(plotManager.getPlotAt(playerLoc)).thenReturn(plot);
-        when(plot.isOwner("albireox")).thenReturn(false);
+        when(plot.isOwner("albireox")).thenReturn(true);
         when(player.getName()).thenReturn("albireox");
-        
+
         List<String> args = Arrays.asList("asdf");
         action.perform(player, args);
 
         verify(player).sendMessage(contains("was disbanded"));
     }
-    
+
 }

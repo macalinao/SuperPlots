@@ -4,7 +4,9 @@ import java.util.List;
 
 import org.bukkit.entity.Player;
 
+import com.simplyian.superplots.MsgColor;
 import com.simplyian.superplots.SuperPlots;
+import com.simplyian.superplots.plot.Plot;
 
 public class ActionDisband extends BaseAction {
 
@@ -14,6 +16,18 @@ public class ActionDisband extends BaseAction {
 
     @Override
     public void perform(Player player, List<String> args) {
+        Plot plot = main.getPlotManager().getPlotAt(player.getLocation());
+        if (plot == null) {
+            player.sendMessage(MsgColor.ERROR + "You are not in a plot.");
+            return;
+        }
         
+        if (!plot.isOwner(player.getName())) {
+            player.sendMessage(MsgColor.ERROR + "You must be the owner of this plot to disband it.");
+            return;
+        }
+        
+        int dubloons = (int) (plot.getValue() * main.getSettings().getRefundMultiplier());
+        player.sendMessage(MsgColor.SUCCESS + "The plot was disbanded. You have received D" + dubloons + " as a result.");
     }
 }

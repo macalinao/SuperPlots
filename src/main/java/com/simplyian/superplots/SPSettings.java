@@ -7,6 +7,8 @@ public class SPSettings {
 
     private final int baseDiamonds = 1;
 
+    private final double refundMultiplier = 0.75;
+
     /**
      * @return the initialPlotSize
      */
@@ -23,5 +25,9 @@ public class SPSettings {
 
     public int getBaseDiamonds() {
         return baseDiamonds;
+    }
+
+    public double getRefundMultiplier() {
+        return refundMultiplier;
     }
 }

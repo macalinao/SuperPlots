@@ -121,4 +121,9 @@ public class PlotTest {
         assertTrue(plot.contains(inside));
         assertFalse(plot.contains(outside));
     }
+    
+    @Test
+    public void test_getValue() {
+        
+    }
 }

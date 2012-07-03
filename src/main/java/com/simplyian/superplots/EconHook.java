@@ -16,8 +16,7 @@ public class EconHook {
 
     public void setupEconomy() {
         RegisteredServiceProvider<Economy> economyProvider = main.getServer()
-                .getServicesManager()
-                .getRegistration(Economy.class);
+                .getServicesManager().getRegistration(Economy.class);
         if (economyProvider != null) {
             economy = economyProvider.getProvider();
         }
@@ -27,5 +26,25 @@ public class EconHook {
                     .log(Level.SEVERE,
                             "No supported economy by Vault detected! Things WILL go wrong!");
         }
+    }
+    
+    /**
+     * Gets the balance of a player.
+     * 
+     * @param player
+     * @return
+     */
+    public double getBalance(String player) {
+        return economy.getBalance(player);
+    }
+
+    /**
+     * Sets the balance of a player.
+     * 
+     * @param player
+     * @param amt
+     */
+    public void setBalance(String player, double amt) {
+        economy.depositPlayer(player, amt);
     }
 }

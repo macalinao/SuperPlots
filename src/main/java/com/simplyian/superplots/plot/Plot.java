@@ -87,6 +87,16 @@ public class Plot {
     }
 
     /**
+     * Checks if the given player is the owner of the plot.
+     * 
+     * @param owner
+     * @return
+     */
+    public boolean isOwner(String owner) {
+        return getOwner().equals(owner);
+    }
+
+    /**
      * Adds a coowner to the plot.
      * 
      * @param coowner

@@ -2,8 +2,10 @@ package com.simplyian.superplots;
 
 public class SPSettings {
     private final int initialPlotSize = 10;
-    
+
     private final double influenceMultiplier = 1.5;
+
+    private final int baseDiamonds = 1;
 
     /**
      * @return the initialPlotSize
@@ -17,5 +19,9 @@ public class SPSettings {
      */
     public double getInfluenceMultiplier() {
         return influenceMultiplier;
+    }
+
+    public int getBaseDiamonds() {
+        return baseDiamonds;
     }
 }

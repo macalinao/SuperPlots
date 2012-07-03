@@ -17,4 +17,9 @@ public class MsgColor {
      * Error message highlight color.
      */
     public static final ChatColor ERROR_HILIGHT = ChatColor.YELLOW;
+
+    /**
+     * Success message color.
+     */
+    public static final ChatColor SUCCESS = ChatColor.GREEN;
 }

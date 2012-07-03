@@ -21,8 +21,7 @@ public class ActionCreate extends BaseAction {
                 player.getLocation());
         double dist = closest.influenceEdgeDistance(player.getLocation());
 
-        double minDist = main.getSettings().getInitialPlotSize()
-                * main.getSettings().getInfluenceMultiplier();
+        double minDist = main.getSettings().getInitialPlotSize();
 
         if (dist < minDist) {
             player.sendMessage(MsgColor.ERROR
@@ -40,6 +39,17 @@ public class ActionCreate extends BaseAction {
             return;
         }
 
+        if (!name.matches("[A-Za-z0-9 '!]+")) {
+            player.sendMessage(MsgColor.ERROR
+                    + "The name you have given is invalid.");
+            player.sendMessage(MsgColor.ERROR
+                    + "Names can only contain letters, numbers, spaces, apostrophes, and exclamation points.");
+            return;
+        }
+
+        Plot plot = main.getPlotManager().createPlot(name, player.getName(),
+                main.getSettings().getInitialPlotSize(), player.getLocation());
+        player.sendMessage(MsgColor.SUCCESS + "Your plot has been created successfully. Enjoy!");
     }
 
 }

@@ -14,6 +14,7 @@ import org.bukkit.entity.Player;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import org.mockito.Mockito;
 
 import com.simplyian.superplots.SPSettings;
 import com.simplyian.superplots.SuperPlots;
@@ -53,7 +54,7 @@ public class ActionCreateTest {
     public void test_perform_tooClose() {
         Plot closePlot = mock(Plot.class);
         when(closePlot.influenceEdgeDistance(any(Location.class))).thenReturn(
-                14.0);
+                9.0);
 
         when(plotManager.getClosestPlotAt(any(Location.class))).thenReturn(
                 closePlot);
@@ -82,5 +83,41 @@ public class ActionCreateTest {
         List<String> args = Arrays.asList("test");
         action.perform(player, args);
         verify(player).sendMessage(contains("already taken"));
+    }
+
+    @Test
+    public void test_perform_invalidName() {
+        Plot closePlot = mock(Plot.class);
+        when(closePlot.influenceEdgeDistance(any(Location.class))).thenReturn(
+                20.0);
+
+        when(plotManager.getClosestPlotAt(any(Location.class))).thenReturn(
+                closePlot);
+        when(plotManager.getPlotByName("test")).thenReturn(closePlot);
+        
+        Location loc = new Location(null, 0, 0, 0);
+        when(player.getLocation()).thenReturn(loc);
+
+        List<String> args = Arrays.asList("This", "is", "my", "plot%");
+        action.perform(player, args);
+        verify(player).sendMessage(contains("is invalid"));
+    }
+
+    @Test
+    public void test_perform_success() {
+        Plot closePlot = mock(Plot.class);
+        when(closePlot.influenceEdgeDistance(any(Location.class))).thenReturn(
+                20.0);
+
+        when(plotManager.getClosestPlotAt(any(Location.class))).thenReturn(
+                closePlot);
+        when(plotManager.getPlotByName("asdf")).thenReturn(closePlot);
+        
+        Location loc = new Location(null, 0, 0, 0);
+        when(player.getLocation()).thenReturn(loc);
+
+        List<String> args = Arrays.asList("test");
+        action.perform(player, args);
+        verify(player).sendMessage(contains("created"));
     }
 }

@@ -33,9 +33,32 @@ public class PlotManager {
      * @return
      */
     public Plot getClosestPlotAt(Location location) {
+        return getClosestPlotAt(location, new Plot[0]);
+    }
+
+    /**
+     * Gets the closest plot at the given location. Uses edge distance, so it's
+     * EXPENSIVE!
+     * 
+     * @param location
+     * @param exclude
+     *            Plots to exclude from this list.
+     * @return
+     */
+    public Plot getClosestPlotAt(Location location, Plot... exclude) {
         double closestDist = 1000000000000.0;
         Plot closest = null;
         for (Plot plot : plots) {
+            boolean allowed = true;
+            for (Plot exc : exclude) {
+                if (plot.equals(exc)) {
+                    allowed = false;
+                    break;
+                }
+            }
+            if (!allowed) {
+                continue;
+            }
             double dist = plot.edgeDistance(location);
             if (dist < closestDist) {
                 closestDist = dist;

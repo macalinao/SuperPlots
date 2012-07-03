@@ -48,6 +48,21 @@ public class PlotManagerTest {
     }
 
     @Test
+    public void test_getClosestPlotAtExclude() {
+        World world = mock(World.class);
+
+        Location center1 = new Location(world, 0, 0, 0);
+        Plot plot1 = pm.createPlot("My Plot", "albireox", 10, center1);
+
+        Location center2 = new Location(world, 40, 0, 0);
+        Plot plot2 = pm.createPlot("My Plot2", "albireox", 10, center2);
+
+        Plot result = pm.getClosestPlotAt(new Location(world, 27, 0, 0), plot2);
+
+        assertEquals(plot1, result);
+    }
+
+    @Test
     public void test_getPlotAt() {
         World world = mock(World.class);
 

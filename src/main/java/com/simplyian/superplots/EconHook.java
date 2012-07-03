@@ -53,4 +53,9 @@ public class EconHook {
         // TODO Auto-generated method stub
 
     }
+
+    public void subtractBalance(String name, int cost) {
+        // TODO Auto-generated method stub
+        
+    }
 }

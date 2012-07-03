@@ -124,6 +124,12 @@ public class PlotTest {
     
     @Test
     public void test_getValue() {
+        plot.setSize(10);
+        plot.setFunds(10000); // We don't care
         
+        int expected = 550;
+        int result = plot.getValue();
+        
+        assertEquals(expected, result);
     }
 }

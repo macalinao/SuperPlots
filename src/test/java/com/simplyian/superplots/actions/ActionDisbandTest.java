@@ -90,7 +90,7 @@ public class ActionDisbandTest {
         List<String> args = Arrays.asList("asdf");
         action.perform(player, args);
 
-        verify(player).sendMessage(contains("must be the owner"));
+        verify(player).sendMessage(contains("was disbanded"));
     }
     
 }

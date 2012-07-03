@@ -311,4 +311,17 @@ public class Plot {
     public boolean contains(Location location) {
         return distanceSquared(location) < (getSize() * getSize());
     }
+    
+    /**
+     * Gets the value of the plot.
+     * 
+     * @return
+     */
+    public int getValue() {
+        int val = 0;
+        for (int i = 1; i <= getSize(); i++) {
+            val += i * 10;
+        }
+        return val;
+    }
 }

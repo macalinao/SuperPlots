@@ -87,4 +87,20 @@ public class PlotManager {
         return plots.remove(plot);
     }
 
+    /**
+     * Gets a plot by its name.
+     * 
+     * @param name
+     * @return
+     */
+    public Plot getPlotByName(String name) {
+        name = name.toLowerCase();
+        for (Plot plot : plots) {
+            if (plot.getName().toLowerCase().equals(name)) {
+                return plot;
+            }
+        }
+        return null;
+    }
+
 }

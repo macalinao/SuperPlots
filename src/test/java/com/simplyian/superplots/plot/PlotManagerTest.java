@@ -86,4 +86,24 @@ public class PlotManagerTest {
         assertFalse(pm.getPlots().contains(result));
         assertFalse(pm.destroyPlot(result));
     }
+
+    @Test
+    public void test_getPlotByName() {
+        World world = mock(World.class);
+        Location center = new Location(world, 0, 0, 0);
+        Plot expected = pm.createPlot("My Plot", "albireox", 10, center);
+        Plot result = pm.getPlotByName("My Plot");
+        
+        assertEquals(expected, result);
+    }
+
+    @Test
+    public void test_getPlotByName_i() {
+        World world = mock(World.class);
+        Location center = new Location(world, 0, 0, 0);
+        Plot expected = pm.createPlot("My Plot", "albireox", 10, center);
+        Plot result = pm.getPlotByName("mY PLot");
+        
+        assertEquals(expected, result);
+    }
 }

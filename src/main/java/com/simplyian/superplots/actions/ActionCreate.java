@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.bukkit.entity.Player;
 
+import com.google.common.base.Joiner;
 import com.simplyian.superplots.MsgColor;
 import com.simplyian.superplots.SuperPlots;
 import com.simplyian.superplots.plot.Plot;
@@ -30,8 +31,15 @@ public class ActionCreate extends BaseAction {
                     + MsgColor.ERROR + "' is too close.");
             return;
         }
-        
-        
+
+        String name = Joiner.on(' ').join(args);
+        Plot existing = main.getPlotManager().getPlotByName(name);
+        if (existing != null) {
+            player.sendMessage(MsgColor.ERROR
+                    + "Sorry, that name is already taken.");
+            return;
+        }
+
     }
 
 }

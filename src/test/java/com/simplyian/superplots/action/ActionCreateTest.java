@@ -50,7 +50,7 @@ public class ActionCreateTest {
     }
 
     @Test
-    public void test_actionCreateTooClose() {
+    public void test_perform_tooClose() {
         Plot closePlot = mock(Plot.class);
         when(closePlot.influenceEdgeDistance(any(Location.class))).thenReturn(
                 14.0);
@@ -64,5 +64,23 @@ public class ActionCreateTest {
         List<String> args = Arrays.asList("Test");
         action.perform(player, args);
         verify(player).sendMessage(contains("too close"));
+    }
+
+    @Test
+    public void test_perform_nameTaken() {
+        Plot closePlot = mock(Plot.class);
+        when(closePlot.influenceEdgeDistance(any(Location.class))).thenReturn(
+                20.0);
+
+        when(plotManager.getClosestPlotAt(any(Location.class))).thenReturn(
+                closePlot);
+        when(plotManager.getPlotByName("test")).thenReturn(closePlot);
+        
+        Location loc = new Location(null, 0, 0, 0);
+        when(player.getLocation()).thenReturn(loc);
+
+        List<String> args = Arrays.asList("test");
+        action.perform(player, args);
+        verify(player).sendMessage(contains("already taken"));
     }
 }

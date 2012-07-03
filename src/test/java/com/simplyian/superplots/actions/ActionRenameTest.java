@@ -112,6 +112,25 @@ public class ActionRenameTest {
     }
 
     @Test
+    public void test_perform_alreadyTaken() {
+        World world = mock(World.class);
+        Location playerLoc = new Location(world, 0, 0, 0);
+        when(player.getLocation()).thenReturn(playerLoc);
+        Plot plot = mock(Plot.class);
+        when(plotManager.getPlotAt(playerLoc)).thenReturn(plot);
+        when(plot.isOwner("albireox")).thenReturn(true);
+        when(player.getName()).thenReturn("albireox");
+        
+        Plot other = mock(Plot.class);
+        when(plotManager.getPlotByName("test")).thenReturn(other);
+
+        List<String> args = Arrays.asList("test");
+        action.perform(player, args);
+
+        verify(player).sendMessage(contains("already taken"));
+    }
+
+    @Test
     public void test_perform_success() {
         World world = mock(World.class);
         Location playerLoc = new Location(world, 0, 0, 0);
@@ -125,6 +144,7 @@ public class ActionRenameTest {
         action.perform(player, args);
 
         verify(player).sendMessage(contains("was renamed"));
+        verify(plot).setName("asdf");
     }
 
 }

@@ -45,6 +45,14 @@ public class ActionRename extends BaseAction {
             return;
         }
 
+        Plot existing = main.getPlotManager().getPlotByName(newName);
+        if (existing != null) {
+            player.sendMessage(MsgColor.ERROR
+                    + "Sorry, that name is already taken.");
+            return;
+        }
+
+        plot.setName(newName);
         player.sendMessage(MsgColor.SUCCESS + "The plot was renamed.");
     }
 }

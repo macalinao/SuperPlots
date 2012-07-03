@@ -96,7 +96,7 @@ public class PlotManager {
     public Plot getPlotByName(String name) {
         name = name.toLowerCase();
         for (Plot plot : plots) {
-            if (plot.getName().toLowerCase().equals(name)) {
+            if (plot.getName().equalsIgnoreCase(name)) {
                 return plot;
             }
         }

@@ -8,9 +8,9 @@ import com.simplyian.superplots.MsgColor;
 import com.simplyian.superplots.SuperPlots;
 import com.simplyian.superplots.plot.Plot;
 
-public class ActionDisband extends BaseAction {
+public class ActionRename extends BaseAction {
 
-    public ActionDisband(SuperPlots main) {
+    public ActionRename(SuperPlots main) {
         super(main);
     }
 
@@ -24,15 +24,10 @@ public class ActionDisband extends BaseAction {
 
         if (!plot.isOwner(player.getName())) {
             player.sendMessage(MsgColor.ERROR
-                    + "You must be the owner of this plot to disband it.");
+                    + "You must be the owner of this plot to rename it.");
             return;
         }
 
-        int dubloons = (int) (plot.getValue() * main.getSettings()
-                .getRefundMultiplier());
-        main.getEconomy().addBalance(player.getName(), dubloons);
-        player.sendMessage(MsgColor.SUCCESS
-                + "The plot was disbanded. You have received D" + dubloons
-                + " as a result.");
+        player.sendMessage(MsgColor.SUCCESS + "The plot was renamed.");
     }
 }

@@ -4,6 +4,7 @@ import java.util.logging.Level;
 
 import net.milkbowl.vault.economy.Economy;
 
+import org.bukkit.entity.Player;
 import org.bukkit.plugin.RegisteredServiceProvider;
 
 public class EconHook {
@@ -27,7 +28,7 @@ public class EconHook {
                             "No supported economy by Vault detected! Things WILL go wrong!");
         }
     }
-    
+
     /**
      * Gets the balance of a player.
      * 
@@ -46,5 +47,10 @@ public class EconHook {
      */
     public void setBalance(String player, double amt) {
         economy.depositPlayer(player, amt);
+    }
+
+    public void addBalance(String player, int dubloons) {
+        // TODO Auto-generated method stub
+
     }
 }

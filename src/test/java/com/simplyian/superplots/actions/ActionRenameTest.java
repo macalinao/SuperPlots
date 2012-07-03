@@ -2,8 +2,6 @@ package com.simplyian.superplots.actions;
 
 import static org.mockito.Matchers.contains;
 import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.anyInt;
-import static org.mockito.Mockito.eq;
 import static org.powermock.api.mockito.PowerMockito.mock;
 import static org.powermock.api.mockito.PowerMockito.when;
 
@@ -17,26 +15,21 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.simplyian.superplots.EconHook;
 import com.simplyian.superplots.SPSettings;
 import com.simplyian.superplots.SuperPlots;
 import com.simplyian.superplots.plot.Plot;
 import com.simplyian.superplots.plot.PlotManager;
 
-public class ActionDisbandTest {
+public class ActionRenameTest {
     private SuperPlots main;
-    private ActionDisband action;
+    private ActionRename action;
     private PlotManager plotManager;
     private Player player;
-    private EconHook econ;
 
     @Before
     public void setup() {
         main = mock(SuperPlots.class);
-        action = new ActionDisband(main);
-
-        econ = mock(EconHook.class);
-        when(main.getEconomy()).thenReturn(econ);
+        action = new ActionRename(main);
 
         plotManager = mock(PlotManager.class);
         when(main.getPlotManager()).thenReturn(plotManager);
@@ -100,7 +93,6 @@ public class ActionDisbandTest {
         action.perform(player, args);
 
         verify(player).sendMessage(contains("was disbanded"));
-        verify(econ).addBalance(eq("albireox"), anyInt());
     }
 
 }

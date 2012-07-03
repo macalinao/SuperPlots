@@ -121,15 +121,27 @@ public class PlotTest {
         assertTrue(plot.contains(inside));
         assertFalse(plot.contains(outside));
     }
-    
+
     @Test
     public void test_getValue() {
         plot.setSize(10);
         plot.setFunds(10000); // We don't care
-        
+
         int expected = 550;
         int result = plot.getValue();
-        
+
         assertEquals(expected, result);
+    }
+
+    @Test
+    public void test_isValidName() {
+        assertTrue(Plot.isValidName("albireox's house"));
+        assertTrue(Plot.isValidName("albireox's house!"));
+        assertTrue(Plot.isValidName("L0l this plot is AMAZING!!!!!111"));
+
+        assertFalse(Plot
+                .isValidName("This name is tooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo long."));
+        assertFalse(Plot.isValidName("This#@$@$"));
+        assertFalse(Plot.isValidName(""));
     }
 }

@@ -47,11 +47,13 @@ public class ActionCreate extends BaseAction {
             return;
         }
 
-        if (!name.matches("[A-Za-z0-9 '!]+")) {
+        if (!Plot.isValidName(name)) {
             player.sendMessage(MsgColor.ERROR
                     + "The name you have given is invalid.");
             player.sendMessage(MsgColor.ERROR
-                    + "Names can only contain letters, numbers, spaces, apostrophes, and exclamation points.");
+                    + "Names may only contain letters, numbers, spaces, apostrophes, and exclamation points.");
+            player.sendMessage(MsgColor.ERROR
+                    + "Names can only be 40 letters long.");
             return;
         }
 

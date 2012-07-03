@@ -311,7 +311,7 @@ public class Plot {
     public boolean contains(Location location) {
         return distanceSquared(location) < (getSize() * getSize());
     }
-    
+
     /**
      * Gets the value of the plot.
      * 
@@ -323,5 +323,15 @@ public class Plot {
             val += i * 10;
         }
         return val;
+    }
+
+    /**
+     * Returns true if the name is valid.
+     * 
+     * @param name
+     * @return
+     */
+    public static boolean isValidName(String name) {
+        return name.matches("[A-Za-z0-9 '!\\.]{1,40}");
     }
 }

@@ -80,6 +80,38 @@ public class ActionRenameTest {
     }
 
     @Test
+    public void test_perform_noName() {
+        World world = mock(World.class);
+        Location playerLoc = new Location(world, 0, 0, 0);
+        when(player.getLocation()).thenReturn(playerLoc);
+        Plot plot = mock(Plot.class);
+        when(plotManager.getPlotAt(playerLoc)).thenReturn(plot);
+        when(plot.isOwner("albireox")).thenReturn(true);
+        when(player.getName()).thenReturn("albireox");
+
+        List<String> args = Arrays.asList();
+        action.perform(player, args);
+
+        verify(player).sendMessage(contains("did not specify"));
+    }
+
+    @Test
+    public void test_perform_invalidName() {
+        World world = mock(World.class);
+        Location playerLoc = new Location(world, 0, 0, 0);
+        when(player.getLocation()).thenReturn(playerLoc);
+        Plot plot = mock(Plot.class);
+        when(plotManager.getPlotAt(playerLoc)).thenReturn(plot);
+        when(plot.isOwner("albireox")).thenReturn(true);
+        when(player.getName()).thenReturn("albireox");
+
+        List<String> args = Arrays.asList("asdf$");
+        action.perform(player, args);
+
+        verify(player).sendMessage(contains("is invalid"));
+    }
+
+    @Test
     public void test_perform_success() {
         World world = mock(World.class);
         Location playerLoc = new Location(world, 0, 0, 0);
@@ -92,7 +124,7 @@ public class ActionRenameTest {
         List<String> args = Arrays.asList("asdf");
         action.perform(player, args);
 
-        verify(player).sendMessage(contains("was disbanded"));
+        verify(player).sendMessage(contains("was renamed"));
     }
 
 }

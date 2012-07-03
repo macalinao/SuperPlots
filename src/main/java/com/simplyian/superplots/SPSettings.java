@@ -9,6 +9,8 @@ public class SPSettings {
 
     private final double refundMultiplier = 0.75;
 
+    private final int minimumPlotSize = 5;
+
     /**
      * @return the initialPlotSize
      */
@@ -29,5 +31,9 @@ public class SPSettings {
 
     public double getRefundMultiplier() {
         return refundMultiplier;
+    }
+
+    public int getMinimumPlotSize() {
+        return minimumPlotSize;
     }
 }

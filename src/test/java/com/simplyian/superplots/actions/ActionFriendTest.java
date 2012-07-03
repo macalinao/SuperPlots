@@ -29,9 +29,9 @@ import com.simplyian.superplots.plot.PlotManager;
 
 @RunWith(PowerMockRunner.class)
 @PrepareForTest(Bukkit.class)
-public class ActionCoownTest {
+public class ActionFriendTest {
     private SuperPlots main;
-    private ActionCoown action;
+    private ActionFriend action;
     private PlotManager plotManager;
     private Player player;
     private EconHook econ;
@@ -39,7 +39,7 @@ public class ActionCoownTest {
     @Before
     public void setup() {
         main = mock(SuperPlots.class);
-        action = new ActionCoown(main);
+        action = new ActionFriend(main);
 
         econ = mock(EconHook.class);
         when(main.getEconomy()).thenReturn(econ);
@@ -133,7 +133,7 @@ public class ActionCoownTest {
     }
 
     @Test
-    public void test_perform_alreadyCoowner() {
+    public void test_perform_alreadyMember() {
         World world = mock(World.class);
         Location playerLoc = new Location(world, 0, 0, 0);
         when(player.getLocation()).thenReturn(playerLoc);
@@ -143,12 +143,12 @@ public class ActionCoownTest {
         when(player.getName()).thenReturn("albireox");
         when(plot.getSize()).thenReturn(10);
 
-        when(plot.isCoowner("BlueJayWay")).thenReturn(true);
-        
+        when(plot.isMember("BlueJayWay")).thenReturn(true);
+
         List<String> args = Arrays.asList("bluejay");
         action.perform(player, args);
 
-        verify(player).sendMessage(contains("already a coowner"));
+        verify(player).sendMessage(contains("already part of"));
     }
 
     @Test
@@ -165,28 +165,7 @@ public class ActionCoownTest {
         List<String> args = Arrays.asList("bluejay");
         action.perform(player, args);
 
-        verify(player).sendMessage(contains("coowner of"));
-        verify(plot).addCoowner("BlueJayWay");
-    }
-
-    @Test
-    public void test_perform_success_alreadyFriend() {
-        World world = mock(World.class);
-        Location playerLoc = new Location(world, 0, 0, 0);
-        when(player.getLocation()).thenReturn(playerLoc);
-        Plot plot = mock(Plot.class);
-        when(plotManager.getPlotAt(playerLoc)).thenReturn(plot);
-        when(plot.isOwner("albireox")).thenReturn(true);
-        when(player.getName()).thenReturn("albireox");
-        when(plot.getSize()).thenReturn(10);
-
-        when(plot.isFriend("BlueJayWay")).thenReturn(true);
-
-        List<String> args = Arrays.asList("bluejay");
-        action.perform(player, args);
-
-        verify(player).sendMessage(contains("coowner of"));
-        verify(plot).addCoowner("BlueJayWay");
-        verify(plot).removeFriend("BlueJayWay");
+        verify(player).sendMessage(contains("has become a friend"));
+        verify(plot).addFriend("BlueJayWay");
     }
 }

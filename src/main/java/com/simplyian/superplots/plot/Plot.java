@@ -171,6 +171,16 @@ public class Plot {
     }
 
     /**
+     * Returns true if the given player is a a member of the plot.
+     * 
+     * @param member
+     * @return
+     */
+    public boolean isMember(String member) {
+        return isFriend(member) || isCoowner(member) || isOwner(member);
+    }
+
+    /**
      * @return the funds
      */
     public int getFunds() {

@@ -9,9 +9,9 @@ import com.simplyian.superplots.MsgColor;
 import com.simplyian.superplots.SuperPlots;
 import com.simplyian.superplots.plot.Plot;
 
-public class ActionCoown extends BaseAction {
+public class ActionFriend extends BaseAction {
 
-    public ActionCoown(SuperPlots main) {
+    public ActionFriend(SuperPlots main) {
         super(main);
     }
 
@@ -25,13 +25,13 @@ public class ActionCoown extends BaseAction {
 
         if (!plot.isOwner(player.getName())) {
             player.sendMessage(MsgColor.ERROR
-                    + "You must be the owner of this plot to add coowners to it.");
+                    + "You must be the owner of this plot to add friends to it.");
             return;
         }
 
         if (args.size() <= 0) {
             player.sendMessage(MsgColor.ERROR
-                    + "You didn't specify a player to add as a coowner.");
+                    + "You didn't specify a player to add as a friend.");
             return;
         }
 
@@ -43,17 +43,14 @@ public class ActionCoown extends BaseAction {
             return;
         }
 
-        if (plot.isCoowner(target.getName())) {
+        if (plot.isMember(target.getName())) {
             player.sendMessage(MsgColor.ERROR
-                    + "The given player is already a coowner of the plot.");
+                    + "The given player is already part of the plot.");
+            return;
         }
 
-        if (plot.isFriend(target.getName())) {
-            plot.removeFriend(target.getName());
-        }
-
-        plot.addCoowner(target.getName());
+        plot.addFriend(target.getName());
         player.sendMessage(MsgColor.SUCCESS_HILIGHT + target.getName()
-                + MsgColor.SUCCESS + " has become a coowner of the plot.");
+                + MsgColor.SUCCESS + " has become a friend of the plot.");
     }
 }

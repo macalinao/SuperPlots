@@ -63,7 +63,7 @@ public class ActionCreate extends BaseAction {
                 multiplier++;
             }
         }
-        multiplier = (int) Math.pow(2.0, multiplier);
+        multiplier = (int) Math.pow(2.0, multiplier - 1);
 
         int requiredMoney = multiplier * 1000;
         double money = main.getEconomy().getBalance(player.getName());

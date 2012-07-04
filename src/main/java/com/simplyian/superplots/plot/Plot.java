@@ -171,13 +171,31 @@ public class Plot {
     }
 
     /**
+     * Returns true if the given player is an adminstrator of the plot.
+     * 
+     * @param member
+     * @return
+     */
+    public boolean isAdministrator(String member) {
+        return isCoowner(member) || isOwner(member);
+    }
+
+    /**
      * Returns true if the given player is a a member of the plot.
      * 
      * @param member
      * @return
      */
     public boolean isMember(String member) {
-        return isFriend(member) || isCoowner(member) || isOwner(member);
+        return isFriend(member) || isAdministrator(member);
+    }
+
+    public void kick(String member) {
+        if (isFriend(member)) {
+            removeFriend(member);
+        } else if (isCoowner(member)) {
+            removeCoowner(member);
+        }
     }
 
     /**

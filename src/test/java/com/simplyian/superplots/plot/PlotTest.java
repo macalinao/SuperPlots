@@ -27,6 +27,37 @@ public class PlotTest {
     }
 
     @Test
+    public void test_kick() {
+        plot.addCoowner("bob");
+        assertTrue(plot.isCoowner("bob"));
+        
+        plot.kick("bob");
+        assertFalse(plot.isCoowner("bob"));
+        assertFalse(plot.isMember("bob"));
+    }
+
+    @Test
+    public void test_kick_friend() {
+        plot.addFriend("bob");
+        assertTrue(plot.isFriend("bob"));
+        
+        plot.kick("bob");
+        assertFalse(plot.isFriend("bob"));
+        assertFalse(plot.isMember("bob"));
+    }
+
+    @Test
+    public void test_kick_owner() {
+        // Impossiburu!
+        plot.setOwner("bob");
+        assertTrue(plot.isOwner("bob"));
+        
+        plot.kick("bob");
+        assertTrue(plot.isOwner("bob"));
+        assertTrue(plot.isMember("bob"));
+    }
+    
+    @Test
     public void test_addFunds() {
         plot.setFunds(10);
         plot.addFunds(130);

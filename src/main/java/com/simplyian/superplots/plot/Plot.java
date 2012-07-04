@@ -190,6 +190,12 @@ public class Plot {
         return isFriend(member) || isAdministrator(member);
     }
 
+    /**
+     * Kicks the given player from the plot. You cannot kick the owner of the
+     * plot.
+     * 
+     * @param member
+     */
     public void kick(String member) {
         if (isFriend(member)) {
             removeFriend(member);

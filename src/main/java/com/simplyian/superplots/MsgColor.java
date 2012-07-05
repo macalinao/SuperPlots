@@ -28,4 +28,14 @@ public class MsgColor {
      * Success message highlight color.
      */
     public static final ChatColor SUCCESS_HILIGHT = ChatColor.YELLOW;
+
+    /**
+     * Info message color.
+     */
+    public static final ChatColor INFO = ChatColor.YELLOW;
+
+    /**
+     * Info message highlight color.
+     */
+    public static final ChatColor INFO_HILIGHT = ChatColor.WHITE;
 }

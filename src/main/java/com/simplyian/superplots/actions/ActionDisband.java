@@ -31,6 +31,7 @@ public class ActionDisband extends BaseAction {
         int dubloons = (int) (plot.getValue() * main.getSettings()
                 .getRefundMultiplier());
         main.getEconomy().addBalance(player.getName(), dubloons);
+        plot.disband();
         player.sendMessage(MsgColor.SUCCESS
                 + "The plot was disbanded. You have received D" + dubloons
                 + " as a result.");

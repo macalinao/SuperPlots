@@ -126,4 +126,9 @@ public class PlotManager {
         return null;
     }
 
+    public void disbandPlot(Plot plot) {
+        // TODO Auto-generated method stub
+        
+    }
+
 }

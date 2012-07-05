@@ -101,6 +101,7 @@ public class ActionDisbandTest {
 
         verify(player).sendMessage(contains("was disbanded"));
         verify(econ).addBalance(eq("albireox"), anyInt());
+        verify(plot).disband();
     }
 
 }

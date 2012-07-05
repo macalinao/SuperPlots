@@ -47,6 +47,11 @@ public class Plot {
     private Location center;
 
     /**
+     * True if the plot is protected.
+     */
+    private boolean protect = true;
+
+    /**
      * @see PlotManager#createPlot
      */
     Plot(String name, String owner, int size, Location center) {
@@ -268,6 +273,23 @@ public class Plot {
     }
 
     /**
+     * Returns true if the plot is protected.
+     * 
+     * @return the protect
+     */
+    public boolean isProtected() {
+        return protect;
+    }
+
+    /**
+     * @param protect
+     *            the protect to set
+     */
+    public void setProtected(boolean protect) {
+        this.protect = protect;
+    }
+
+    /**
      * Gets the distance between this plot and the given location.
      * 
      * @param other
@@ -357,6 +379,13 @@ public class Plot {
             val += i * 10;
         }
         return val;
+    }
+
+    /**
+     * Disbands the plot.
+     */
+    public void disband() {
+        SuperPlots.getInstance().getPlotManager().disbandPlot(this);
     }
 
     /**

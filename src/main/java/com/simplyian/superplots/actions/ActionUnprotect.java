@@ -8,9 +8,9 @@ import com.simplyian.superplots.MsgColor;
 import com.simplyian.superplots.SuperPlots;
 import com.simplyian.superplots.plot.Plot;
 
-public class ActionProtect extends BaseAction {
+public class ActionUnprotect extends BaseAction {
 
-    public ActionProtect(SuperPlots main) {
+    public ActionUnprotect(SuperPlots main) {
         super(main);
     }
 
@@ -24,20 +24,20 @@ public class ActionProtect extends BaseAction {
 
         if (!plot.isOwner(player.getName())) {
             player.sendMessage(MsgColor.ERROR
-                    + "You must be the owner of this plot to protect it.");
+                    + "You must be the owner of this plot to unprotect it.");
             return;
         }
 
-        if (plot.isProtected()) {
+        if (!plot.isProtected()) {
             player.sendMessage(MsgColor.ERROR
-                    + "The plot is already protected. To turn off protection use "
-                    + MsgColor.ERROR_HILIGHT + "/plot unprotect"
-                    + MsgColor.ERROR + ".");
+                    + "The plot is already unprotected. To turn on protection use "
+                    + MsgColor.ERROR_HILIGHT + "/plot protect" + MsgColor.ERROR
+                    + ".");
             return;
         }
 
-        plot.setProtected(true);
+        plot.setProtected(false);
         player.sendMessage(MsgColor.SUCCESS_HILIGHT + plot.getName()
-                + MsgColor.SUCCESS + " has been protected.");
+                + MsgColor.SUCCESS + " has been unprotected.");
     }
 }

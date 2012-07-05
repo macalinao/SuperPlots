@@ -118,7 +118,7 @@ public class ActionPrivateTest {
         action.perform(player, args);
 
         verify(player).sendMessage(contains("has been made private"));
-        verify(plot).setPrivate(false);
+        verify(plot).setPrivate(true);
     }
 
 }

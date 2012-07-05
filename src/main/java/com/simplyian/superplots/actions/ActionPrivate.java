@@ -36,7 +36,7 @@ public class ActionPrivate extends BaseAction {
             return;
         }
 
-        plot.setPrivate(false);
+        plot.setPrivate(true);
         player.sendMessage(MsgColor.SUCCESS_HILIGHT + plot.getName()
                 + MsgColor.SUCCESS + " has been made private.");
     }

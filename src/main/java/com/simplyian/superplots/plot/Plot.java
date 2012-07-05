@@ -52,6 +52,11 @@ public class Plot {
     private boolean protect = true;
 
     /**
+     * True if the plot is private.
+     */
+    private boolean privacy = true;
+
+    /**
      * @see PlotManager#createPlot
      */
     Plot(String name, String owner, int size, Location center) {
@@ -287,6 +292,30 @@ public class Plot {
      */
     public void setProtected(boolean protect) {
         this.protect = protect;
+    }
+
+    /**
+     * @return the privacy
+     */
+    public boolean isPrivate() {
+        return privacy;
+    }
+
+    /**
+     * Returns true if the plot is public.
+     * 
+     * @return
+     */
+    public boolean isPublic() {
+        return !privacy;
+    }
+
+    /**
+     * @param privacy
+     *            the privacy to set
+     */
+    public void setPrivate(boolean privacy) {
+        this.privacy = privacy;
     }
 
     /**

@@ -80,6 +80,26 @@ public class PlotTest {
     }
 
     @Test
+    public void test_dailyTax() {
+        plot.setSize(11);
+        
+        int expected = 55;
+        int result = plot.dailyTax();
+
+        assertEquals(expected, result);
+    }
+
+    @Test
+    public void test_taxDaysLeft() {
+        plot.setSize(11);
+        plot.setFunds(1000);
+        
+        int expected = 18;
+        int result = plot.taxDaysLeft();
+
+        assertEquals(expected, result);
+    }
+    @Test
     public void test_distance() {
         Location me = new Location(plot.getCenter().getWorld(), 0, 0, 5);
 
@@ -87,6 +107,16 @@ public class PlotTest {
         double result = plot.distance(me);
 
         assertEquals(expected, result, 0.1);
+    }
+
+    @Test
+    public void test_distancef() {
+        Location me = new Location(plot.getCenter().getWorld(), 123, 456, 5);
+
+        String expected = "467.66";
+        String result = plot.distancef(me);
+
+        assertEquals(expected, result);
     }
 
     @Test

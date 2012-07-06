@@ -3,6 +3,7 @@ package com.simplyian.superplots.plot;
 import java.util.HashSet;
 import java.util.Set;
 
+import org.bukkit.ChatColor;
 import org.bukkit.Location;
 
 import com.simplyian.superplots.SuperPlots;
@@ -319,6 +320,24 @@ public class Plot {
     }
 
     /**
+     * Gets the daily tax rate of the plot.
+     * 
+     * @return
+     */
+    public int dailyTax() {
+        return getSize() * 5;
+    }
+
+    /**
+     * Gets the amount of days left where tax can still pay off the plot.
+     * 
+     * @return
+     */
+    public int taxDaysLeft() {
+        return getFunds() / dailyTax();
+    }
+
+    /**
      * Gets the distance between this plot and the given location.
      * 
      * @param other
@@ -326,6 +345,16 @@ public class Plot {
      */
     public double distance(Location other) {
         return center.distance(other);
+    }
+
+    /**
+     * Gets the formatted distance between this plot and the given location.
+     * 
+     * @param other
+     * @return
+     */
+    public String distancef(Location other) {
+        return String.format("%1$,.2f", distance(other));
     }
 
     /**

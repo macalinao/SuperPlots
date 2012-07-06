@@ -5,12 +5,12 @@ import java.util.List;
 import org.bukkit.entity.Player;
 
 import com.simplyian.superplots.MsgColor;
-import com.simplyian.superplots.SuperPlots;
+import com.simplyian.superplots.SuperPlotsPlugin;
 import com.simplyian.superplots.plot.Plot;
 
 public class ActionWithdraw extends BaseAction {
 
-    public ActionWithdraw(SuperPlots main) {
+    public ActionWithdraw(SuperPlotsPlugin main) {
         super(main);
     }
 

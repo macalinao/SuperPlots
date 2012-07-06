@@ -12,7 +12,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.simplyian.superplots.SuperPlots;
+import com.simplyian.superplots.SuperPlotsPlugin;
 import com.simplyian.superplots.event.SPEventFactory;
 
 public class PlotManagerTest {
@@ -20,7 +20,7 @@ public class PlotManagerTest {
 
     @Before
     public void setup() {
-        SuperPlots main = mock(SuperPlots.class);
+        SuperPlotsPlugin main = mock(SuperPlotsPlugin.class);
         pm = new PlotManager(main);
 
         SPEventFactory eventFactory = mock(SPEventFactory.class);

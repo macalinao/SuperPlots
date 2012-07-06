@@ -6,12 +6,12 @@ import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
 import com.simplyian.superplots.MsgColor;
-import com.simplyian.superplots.SuperPlots;
+import com.simplyian.superplots.SuperPlotsPlugin;
 import com.simplyian.superplots.plot.Plot;
 
 public class ActionKick extends BaseAction {
 
-    public ActionKick(SuperPlots main) {
+    public ActionKick(SuperPlotsPlugin main) {
         super(main);
     }
 

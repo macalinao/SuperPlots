@@ -8,10 +8,10 @@ import org.bukkit.entity.Player;
 import org.bukkit.plugin.RegisteredServiceProvider;
 
 public class EconHook {
-    private final SuperPlots main;
+    private final SuperPlotsPlugin main;
     private Economy economy = null;
 
-    public EconHook(SuperPlots main) {
+    public EconHook(SuperPlotsPlugin main) {
         this.main = main;
     }
 

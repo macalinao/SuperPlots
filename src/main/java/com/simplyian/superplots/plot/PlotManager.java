@@ -5,14 +5,14 @@ import java.util.List;
 
 import org.bukkit.Location;
 
-import com.simplyian.superplots.SuperPlots;
+import com.simplyian.superplots.SuperPlotsPlugin;
 
 public class PlotManager {
-    private final SuperPlots main;
+    private final SuperPlotsPlugin main;
 
     private List<Plot> plots = new ArrayList<Plot>();
 
-    public PlotManager(SuperPlots main) {
+    public PlotManager(SuperPlotsPlugin main) {
         this.main = main;
     }
 

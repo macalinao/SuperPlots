@@ -19,12 +19,12 @@ import org.junit.Test;
 
 import com.simplyian.superplots.EconHook;
 import com.simplyian.superplots.SPSettings;
-import com.simplyian.superplots.SuperPlots;
+import com.simplyian.superplots.SuperPlotsPlugin;
 import com.simplyian.superplots.plot.Plot;
 import com.simplyian.superplots.plot.PlotManager;
 
 public class ActionShrinkTest {
-    private SuperPlots main;
+    private SuperPlotsPlugin main;
     private ActionShrink action;
     private PlotManager plotManager;
     private Player player;
@@ -32,7 +32,7 @@ public class ActionShrinkTest {
 
     @Before
     public void setup() {
-        main = mock(SuperPlots.class);
+        main = mock(SuperPlotsPlugin.class);
         action = new ActionShrink(main);
 
         econ = mock(EconHook.class);

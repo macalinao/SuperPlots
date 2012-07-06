@@ -17,12 +17,12 @@ import org.junit.Test;
 
 import com.simplyian.superplots.EconHook;
 import com.simplyian.superplots.SPSettings;
-import com.simplyian.superplots.SuperPlots;
+import com.simplyian.superplots.SuperPlotsPlugin;
 import com.simplyian.superplots.plot.Plot;
 import com.simplyian.superplots.plot.PlotManager;
 
 public class ActionWithdrawTest {
-    private SuperPlots main;
+    private SuperPlotsPlugin main;
     private ActionWithdraw action;
     private PlotManager plotManager;
     private Player player;
@@ -30,7 +30,7 @@ public class ActionWithdrawTest {
 
     @Before
     public void setup() {
-        main = mock(SuperPlots.class);
+        main = mock(SuperPlotsPlugin.class);
         action = new ActionWithdraw(main);
 
         econ = mock(EconHook.class);

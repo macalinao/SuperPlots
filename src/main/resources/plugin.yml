@@ -4,7 +4,7 @@ version: 0.0.1
 author: AlbireoX
 website: http://simplyian.com/
 
-main: com.simplyian.superplots.SuperPlots
+main: com.simplyian.superplots.SuperPlotsPlugin
 depend: ["Vault"]
 
 commands:

@@ -15,20 +15,20 @@ import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
 
-import com.simplyian.superplots.SuperPlots;
+import com.simplyian.superplots.SuperPlotsPlugin;
 import com.simplyian.superplots.event.SPEventFactory;
 import com.simplyian.superplots.plot.Plot;
 import com.simplyian.superplots.plot.PlotManager;
 
 public class MainListenerTest {
-    private SuperPlots main;
+    private SuperPlotsPlugin main;
     private MainListener instance;
     private PlotManager plotManager;
     private SPEventFactory eventFactory;
     
     @Before
     public void setup() {
-        main = mock(SuperPlots.class);
+        main = mock(SuperPlotsPlugin.class);
         eventFactory = mock(SPEventFactory.class);
         when(main.getEventFactory()).thenReturn(eventFactory);
         

@@ -20,12 +20,12 @@ import org.junit.Test;
 
 import com.simplyian.superplots.EconHook;
 import com.simplyian.superplots.SPSettings;
-import com.simplyian.superplots.SuperPlots;
+import com.simplyian.superplots.SuperPlotsPlugin;
 import com.simplyian.superplots.plot.Plot;
 import com.simplyian.superplots.plot.PlotManager;
 
 public class ActionExpandTest {
-    private SuperPlots main;
+    private SuperPlotsPlugin main;
     private ActionExpand action;
     private PlotManager plotManager;
     private Player player;
@@ -33,7 +33,7 @@ public class ActionExpandTest {
 
     @Before
     public void setup() {
-        main = mock(SuperPlots.class);
+        main = mock(SuperPlotsPlugin.class);
         action = new ActionExpand(main);
 
         econ = mock(EconHook.class);

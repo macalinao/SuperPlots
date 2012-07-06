@@ -6,12 +6,12 @@ import org.bukkit.entity.Player;
 
 import com.google.common.base.Joiner;
 import com.simplyian.superplots.MsgColor;
-import com.simplyian.superplots.SuperPlots;
+import com.simplyian.superplots.SuperPlotsPlugin;
 import com.simplyian.superplots.plot.Plot;
 
 public class ActionRename extends BaseAction {
 
-    public ActionRename(SuperPlots main) {
+    public ActionRename(SuperPlotsPlugin main) {
         super(main);
     }
 

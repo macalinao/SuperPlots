@@ -16,19 +16,19 @@ import org.junit.Before;
 import org.junit.Test;
 
 import com.simplyian.superplots.SPSettings;
-import com.simplyian.superplots.SuperPlots;
+import com.simplyian.superplots.SuperPlotsPlugin;
 import com.simplyian.superplots.plot.Plot;
 import com.simplyian.superplots.plot.PlotManager;
 
 public class ActionRenameTest {
-    private SuperPlots main;
+    private SuperPlotsPlugin main;
     private ActionRename action;
     private PlotManager plotManager;
     private Player player;
 
     @Before
     public void setup() {
-        main = mock(SuperPlots.class);
+        main = mock(SuperPlotsPlugin.class);
         action = new ActionRename(main);
 
         plotManager = mock(PlotManager.class);

@@ -3,10 +3,10 @@ package com.simplyian.superplots.plot;
 import java.util.HashSet;
 import java.util.Set;
 
-import org.bukkit.ChatColor;
 import org.bukkit.Location;
 
 import com.simplyian.superplots.SuperPlots;
+import com.simplyian.superplots.SuperPlotsPlugin;
 
 /**
  * Represents an ownable piece of land.
@@ -338,6 +338,31 @@ public class Plot {
     }
 
     /**
+     * Processes tax.
+     * 
+     * @return <ul>
+     *         <li>0 if the tax was able to be paid.</li>
+     *         <li>1 if the tax could not be paid and shrunk as a result.</li>
+     *         <li>2 if the plot was deleted.</li>
+     *         </ul>
+     */
+    public int processTax() {
+        int tax = dailyTax();
+        if (tax <= getFunds()) {
+            subtractFunds(tax);
+            return 0;
+        }
+
+        if (getSize() > SuperPlots.getSettings().getMinimumPlotSize()) {
+            shrink(1);
+            return 1;
+        } else {
+            disband();
+            return 2;
+        }
+    }
+
+    /**
      * Gets the distance between this plot and the given location.
      * 
      * @param other
@@ -387,7 +412,7 @@ public class Plot {
      */
     public double influenceEdgeDistance(Location location) {
         return edgeDistance(location)
-                * SuperPlots.getInstance().getSettings()
+                * SuperPlotsPlugin.getInstance().getSettings()
                         .getInfluenceMultiplier();
     }
 
@@ -443,7 +468,7 @@ public class Plot {
      * Disbands the plot.
      */
     public void disband() {
-        SuperPlots.getInstance().getPlotManager().disbandPlot(this);
+        SuperPlots.getPlotManager().disbandPlot(this);
     }
 
     /**

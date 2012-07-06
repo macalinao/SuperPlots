@@ -13,7 +13,7 @@ import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
 
-import com.simplyian.superplots.SuperPlots;
+import com.simplyian.superplots.SuperPlotsPlugin;
 import com.simplyian.superplots.event.PlotBuildEvent;
 import com.simplyian.superplots.event.PlotInteractEvent;
 import com.simplyian.superplots.plot.Plot;
@@ -26,9 +26,9 @@ public class MainListener implements Listener {
 
     Map<String, Block> pblocks = new HashMap<String, Block>();
 
-    private SuperPlots main;
+    private SuperPlotsPlugin main;
 
-    public MainListener(SuperPlots main) {
+    public MainListener(SuperPlotsPlugin main) {
         this.main = main;
     }
 

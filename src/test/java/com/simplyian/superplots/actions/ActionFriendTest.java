@@ -23,14 +23,14 @@ import org.powermock.modules.junit4.PowerMockRunner;
 
 import com.simplyian.superplots.EconHook;
 import com.simplyian.superplots.SPSettings;
-import com.simplyian.superplots.SuperPlots;
+import com.simplyian.superplots.SuperPlotsPlugin;
 import com.simplyian.superplots.plot.Plot;
 import com.simplyian.superplots.plot.PlotManager;
 
 @RunWith(PowerMockRunner.class)
 @PrepareForTest(Bukkit.class)
 public class ActionFriendTest {
-    private SuperPlots main;
+    private SuperPlotsPlugin main;
     private ActionFriend action;
     private PlotManager plotManager;
     private Player player;
@@ -38,7 +38,7 @@ public class ActionFriendTest {
 
     @Before
     public void setup() {
-        main = mock(SuperPlots.class);
+        main = mock(SuperPlotsPlugin.class);
         action = new ActionFriend(main);
 
         econ = mock(EconHook.class);

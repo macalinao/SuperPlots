@@ -5,12 +5,12 @@ import java.util.List;
 import org.bukkit.entity.Player;
 
 import com.simplyian.superplots.MsgColor;
-import com.simplyian.superplots.SuperPlots;
+import com.simplyian.superplots.SuperPlotsPlugin;
 import com.simplyian.superplots.plot.Plot;
 
 public class ActionPrivate extends BaseAction {
 
-    public ActionPrivate(SuperPlots main) {
+    public ActionPrivate(SuperPlotsPlugin main) {
         super(main);
     }
 

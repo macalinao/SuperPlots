@@ -6,7 +6,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 
 import com.simplyian.superplots.MsgColor;
-import com.simplyian.superplots.SuperPlots;
+import com.simplyian.superplots.SuperPlotsPlugin;
 import com.simplyian.superplots.event.PlotBuildEvent;
 import com.simplyian.superplots.event.PlotEnterEvent;
 import com.simplyian.superplots.event.PlotExitEvent;
@@ -19,9 +19,9 @@ import com.simplyian.superplots.plot.Plot;
  * @author simplyianm
  */
 public class PlotListener implements Listener {
-    private SuperPlots main;
+    private SuperPlotsPlugin main;
 
-    public PlotListener(SuperPlots main) {
+    public PlotListener(SuperPlotsPlugin main) {
         this.main = main;
     }
 

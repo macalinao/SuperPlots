@@ -6,13 +6,13 @@ import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 
-import com.simplyian.superplots.SuperPlots;
+import com.simplyian.superplots.SuperPlotsPlugin;
 import com.simplyian.superplots.plot.Plot;
 
 public class SPEventFactory {
-    private final SuperPlots main;
+    private final SuperPlotsPlugin main;
 
-    public SPEventFactory(SuperPlots main) {
+    public SPEventFactory(SuperPlotsPlugin main) {
         this.main = main;
     }
 

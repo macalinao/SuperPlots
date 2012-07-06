@@ -7,11 +7,11 @@ import org.bukkit.entity.Player;
 
 import com.google.common.base.Joiner;
 import com.simplyian.superplots.MsgColor;
-import com.simplyian.superplots.SuperPlots;
+import com.simplyian.superplots.SuperPlotsPlugin;
 import com.simplyian.superplots.plot.Plot;
 
 public class ActionInfo extends BaseAction {
-    public ActionInfo(SuperPlots main) {
+    public ActionInfo(SuperPlotsPlugin main) {
         super(main);
     }
 

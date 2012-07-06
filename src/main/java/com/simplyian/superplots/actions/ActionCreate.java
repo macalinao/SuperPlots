@@ -9,12 +9,12 @@ import org.bukkit.inventory.PlayerInventory;
 
 import com.google.common.base.Joiner;
 import com.simplyian.superplots.MsgColor;
-import com.simplyian.superplots.SuperPlots;
+import com.simplyian.superplots.SuperPlotsPlugin;
 import com.simplyian.superplots.plot.Plot;
 
 public class ActionCreate extends BaseAction {
 
-    public ActionCreate(SuperPlots main) {
+    public ActionCreate(SuperPlotsPlugin main) {
         super(main);
     }
 

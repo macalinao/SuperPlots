@@ -49,13 +49,23 @@ public class EconHook {
         economy.depositPlayer(player, amt);
     }
 
-    public void addBalance(String player, int dubloons) {
-        // TODO Auto-generated method stub
-
+    /**
+     * Adds money to a player's account.
+     * 
+     * @param player
+     * @param cost
+     */
+    public void addBalance(String name, int cost) {
+        setBalance(name, getBalance(name) + cost);
     }
 
+    /**
+     * Subtracts an amount of money from a player's account.
+     * 
+     * @param name
+     * @param cost
+     */
     public void subtractBalance(String name, int cost) {
-        // TODO Auto-generated method stub
-        
+        setBalance(name, getBalance(name) - cost);
     }
 }

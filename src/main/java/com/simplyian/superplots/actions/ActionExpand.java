@@ -39,19 +39,19 @@ public class ActionExpand extends BaseAction {
         }
 
         int cost = plot.getSize() * 10;
-        double onHand = main.getEconomy().getBalance(player.getName());
+        int onHand = plot.getFunds();
         if (onHand < cost) {
             player.sendMessage(MsgColor.ERROR
-                    + "You don't have enough money to expand your plot. (Costs D"
+                    + "The plot doesn't have enough money to expand. (Costs D"
                     + cost + ")");
             return;
         }
 
-        main.getEconomy().subtractBalance(player.getName(), cost);
+        plot.subtractFunds(cost);
         plot.expand();
         player.sendMessage(MsgColor.SUCCESS
                 + "The plot was expanded from size " + (size - 1) + " to "
                 + size + ". As a result, " + cost
-                + " dubloons have been taken from your wallet.");
+                + " dubloons have been taken from the plot funds.");
     }
 }

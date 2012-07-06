@@ -118,8 +118,7 @@ public class ActionExpandTest {
         when(plot.isOwner("albireox")).thenReturn(true);
         when(player.getName()).thenReturn("albireox");
         when(plot.getSize()).thenReturn(10);
-        
-        when(econ.getBalance("albireox")).thenReturn(99.0);
+        when(plot.getFunds()).thenReturn(99);
 
         List<String> args = Arrays.asList();
         action.perform(player, args);
@@ -137,14 +136,13 @@ public class ActionExpandTest {
         when(plot.isOwner("albireox")).thenReturn(true);
         when(player.getName()).thenReturn("albireox");
         when(plot.getSize()).thenReturn(10);
-        
-        when(econ.getBalance("albireox")).thenReturn(100.0);
+        when(plot.getFunds()).thenReturn(100);
 
         List<String> args = Arrays.asList();
         action.perform(player, args);
 
         verify(player).sendMessage(contains("was expanded"));
-        verify(econ).subtractBalance(eq("albireox"), eq(100));
+        verify(plot).subtractFunds(100);
         verify(plot).expand();
     }
 }

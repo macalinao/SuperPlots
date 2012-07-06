@@ -1,6 +1,5 @@
 package com.simplyian.superplots.actions;
 
-import java.text.NumberFormat;
 import java.util.List;
 
 import org.bukkit.entity.Player;

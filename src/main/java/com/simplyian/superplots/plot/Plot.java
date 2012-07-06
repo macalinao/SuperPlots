@@ -6,7 +6,6 @@ import java.util.Set;
 import org.bukkit.Location;
 
 import com.simplyian.superplots.SuperPlots;
-import com.simplyian.superplots.SuperPlotsPlugin;
 
 /**
  * Represents an ownable piece of land.

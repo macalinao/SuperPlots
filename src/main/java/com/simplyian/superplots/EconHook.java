@@ -4,7 +4,6 @@ import java.util.logging.Level;
 
 import net.milkbowl.vault.economy.Economy;
 
-import org.bukkit.entity.Player;
 import org.bukkit.plugin.RegisteredServiceProvider;
 
 public class EconHook {

@@ -89,13 +89,13 @@ public class ActionFriendTest {
         when(player.getLocation()).thenReturn(playerLoc);
         Plot plot = mock(Plot.class);
         when(plotManager.getPlotAt(playerLoc)).thenReturn(plot);
-        when(plot.isOwner("albireox")).thenReturn(false);
+        when(plot.isAdministrator("albireox")).thenReturn(false);
         when(player.getName()).thenReturn("albireox");
 
         List<String> args = Arrays.asList();
         action.perform(player, args);
 
-        verify(player).sendMessage(contains("must be the owner"));
+        verify(player).sendMessage(contains("must be an administrator"));
     }
 
     @Test
@@ -105,7 +105,7 @@ public class ActionFriendTest {
         when(player.getLocation()).thenReturn(playerLoc);
         Plot plot = mock(Plot.class);
         when(plotManager.getPlotAt(playerLoc)).thenReturn(plot);
-        when(plot.isOwner("albireox")).thenReturn(true);
+        when(plot.isAdministrator("albireox")).thenReturn(true);
         when(player.getName()).thenReturn("albireox");
         when(plot.getSize()).thenReturn(10);
 
@@ -122,7 +122,7 @@ public class ActionFriendTest {
         when(player.getLocation()).thenReturn(playerLoc);
         Plot plot = mock(Plot.class);
         when(plotManager.getPlotAt(playerLoc)).thenReturn(plot);
-        when(plot.isOwner("albireox")).thenReturn(true);
+        when(plot.isAdministrator("albireox")).thenReturn(true);
         when(player.getName()).thenReturn("albireox");
         when(plot.getSize()).thenReturn(10);
 
@@ -139,7 +139,7 @@ public class ActionFriendTest {
         when(player.getLocation()).thenReturn(playerLoc);
         Plot plot = mock(Plot.class);
         when(plotManager.getPlotAt(playerLoc)).thenReturn(plot);
-        when(plot.isOwner("albireox")).thenReturn(true);
+        when(plot.isAdministrator("albireox")).thenReturn(true);
         when(player.getName()).thenReturn("albireox");
         when(plot.getSize()).thenReturn(10);
 
@@ -158,7 +158,7 @@ public class ActionFriendTest {
         when(player.getLocation()).thenReturn(playerLoc);
         Plot plot = mock(Plot.class);
         when(plotManager.getPlotAt(playerLoc)).thenReturn(plot);
-        when(plot.isOwner("albireox")).thenReturn(true);
+        when(plot.isAdministrator("albireox")).thenReturn(true);
         when(player.getName()).thenReturn("albireox");
         when(plot.getSize()).thenReturn(10);
 

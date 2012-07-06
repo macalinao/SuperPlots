@@ -23,9 +23,9 @@ public class ActionFriend extends BaseAction {
             return;
         }
 
-        if (!plot.isOwner(player.getName())) {
+        if (!plot.isAdministrator(player.getName())) {
             player.sendMessage(MsgColor.ERROR
-                    + "You must be the owner of this plot to add friends to it.");
+                    + "You must be an administrator of this plot to add friends to it.");
             return;
         }
 

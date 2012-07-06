@@ -5,10 +5,12 @@ import java.util.logging.Level;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import com.simplyian.superplots.data.DataManager;
 import com.simplyian.superplots.event.SPEventFactory;
 import com.simplyian.superplots.listeners.MainListener;
 import com.simplyian.superplots.listeners.PlotListener;
 import com.simplyian.superplots.plot.PlotManager;
+import com.simplyian.superplots.plot.Taxman;
 
 /**
  * SuperPlots main plugin class.
@@ -17,6 +19,8 @@ import com.simplyian.superplots.plot.PlotManager;
  */
 public class SuperPlotsPlugin extends JavaPlugin {
     private static SuperPlotsPlugin instance;
+
+    private DataManager dataManager;
 
     /**
      * Hook into the economy.
@@ -61,6 +65,10 @@ public class SuperPlotsPlugin extends JavaPlugin {
         getLogger().log(Level.INFO, "Setting up settings...");
         settings = new SPSettings();
 
+        getLogger().log(Level.INFO, "Initializing taxman...");
+        getServer().getScheduler().scheduleSyncRepeatingTask(this,
+                new Taxman(this), 0L, 20 * 60L);
+
         getLogger().log(Level.INFO, "================= SuperPlots enabled!");
     }
 
@@ -76,6 +84,10 @@ public class SuperPlotsPlugin extends JavaPlugin {
     private void setupListeners() {
         Bukkit.getPluginManager().registerEvents(new MainListener(this), this);
         Bukkit.getPluginManager().registerEvents(new PlotListener(this), this);
+    }
+
+    public DataManager getDataManager() {
+        return dataManager;
     }
 
     /**

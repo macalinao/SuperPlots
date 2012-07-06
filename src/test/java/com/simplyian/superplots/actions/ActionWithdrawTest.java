@@ -81,7 +81,7 @@ public class ActionWithdrawTest {
         List<String> args = Arrays.asList();
         action.perform(player, args);
 
-        verify(player).sendMessage(contains("must be the owner"));
+        verify(player).sendMessage(contains("must be an administrator"));
     }
 
     @Test

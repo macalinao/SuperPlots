@@ -96,10 +96,10 @@ public class PlotManagerTest {
         Plot result = pm.createPlot("My Plot", "albireox", 10, center);
 
         assertTrue(pm.getPlots().contains(result));
-        assertTrue(pm.destroyPlot(result));
+        assertTrue(pm.disbandPlot(result));
 
         assertFalse(pm.getPlots().contains(result));
-        assertFalse(pm.destroyPlot(result));
+        assertFalse(pm.disbandPlot(result));
     }
 
     @Test

@@ -69,13 +69,13 @@ public class ActionWithdrawTest {
     }
 
     @Test
-    public void test_perform_mustBeOwner() {
+    public void test_perform_mustBeAdministrator() {
         World world = mock(World.class);
         Location playerLoc = new Location(world, 0, 0, 0);
         when(player.getLocation()).thenReturn(playerLoc);
         Plot plot = mock(Plot.class);
         when(plotManager.getPlotAt(playerLoc)).thenReturn(plot);
-        when(plot.isOwner("albireox")).thenReturn(false);
+        when(plot.isAdministrator("albireox")).thenReturn(false);
         when(player.getName()).thenReturn("albireox");
 
         List<String> args = Arrays.asList();
@@ -91,7 +91,7 @@ public class ActionWithdrawTest {
         when(player.getLocation()).thenReturn(playerLoc);
         Plot plot = mock(Plot.class);
         when(plotManager.getPlotAt(playerLoc)).thenReturn(plot);
-        when(plot.isOwner("albireox")).thenReturn(true);
+        when(plot.isAdministrator("albireox")).thenReturn(true);
         when(player.getName()).thenReturn("albireox");
 
         List<String> args = Arrays.asList();
@@ -107,7 +107,7 @@ public class ActionWithdrawTest {
         when(player.getLocation()).thenReturn(playerLoc);
         Plot plot = mock(Plot.class);
         when(plotManager.getPlotAt(playerLoc)).thenReturn(plot);
-        when(plot.isOwner("albireox")).thenReturn(true);
+        when(plot.isAdministrator("albireox")).thenReturn(true);
         when(player.getName()).thenReturn("albireox");
         when(econ.getBalance("albireox")).thenReturn(200.0);
 
@@ -124,7 +124,7 @@ public class ActionWithdrawTest {
         when(player.getLocation()).thenReturn(playerLoc);
         Plot plot = mock(Plot.class);
         when(plotManager.getPlotAt(playerLoc)).thenReturn(plot);
-        when(plot.isOwner("albireox")).thenReturn(true);
+        when(plot.isAdministrator("albireox")).thenReturn(true);
         when(player.getName()).thenReturn("albireox");
         when(plot.getFunds()).thenReturn(200);
 
@@ -141,7 +141,7 @@ public class ActionWithdrawTest {
         when(player.getLocation()).thenReturn(playerLoc);
         Plot plot = mock(Plot.class);
         when(plotManager.getPlotAt(playerLoc)).thenReturn(plot);
-        when(plot.isOwner("albireox")).thenReturn(true);
+        when(plot.isAdministrator("albireox")).thenReturn(true);
         when(player.getName()).thenReturn("albireox");
         when(plot.getFunds()).thenReturn(400);
 

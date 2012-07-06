@@ -11,7 +11,7 @@ import com.simplyian.superplots.plot.Plot;
 public class ActionUnprotect extends BaseAction {
 
     public ActionUnprotect(SuperPlotsPlugin main) {
-        super(main);
+        super(main, "unprotect");
     }
 
     @Override

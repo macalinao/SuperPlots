@@ -11,7 +11,7 @@ import com.simplyian.superplots.plot.Plot;
 
 public class ActionInfo extends BaseAction {
     public ActionInfo(SuperPlotsPlugin main) {
-        super(main);
+        super(main, "info");
     }
 
     @Override

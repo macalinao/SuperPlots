@@ -12,7 +12,7 @@ import com.simplyian.superplots.plot.Plot;
 public class ActionFriend extends BaseAction {
 
     public ActionFriend(SuperPlotsPlugin main) {
-        super(main);
+        super(main, "friend");
     }
 
     @Override

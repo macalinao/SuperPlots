@@ -12,7 +12,7 @@ import com.simplyian.superplots.plot.Plot;
 public class ActionKick extends BaseAction {
 
     public ActionKick(SuperPlotsPlugin main) {
-        super(main);
+        super(main, "kick");
     }
 
     @Override

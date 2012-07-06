@@ -11,7 +11,7 @@ import com.simplyian.superplots.plot.Plot;
 public class ActionDeposit extends BaseAction {
 
     public ActionDeposit(SuperPlotsPlugin main) {
-        super(main);
+        super(main, "deposit");
     }
 
     @Override

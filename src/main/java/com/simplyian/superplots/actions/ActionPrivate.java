@@ -11,7 +11,7 @@ import com.simplyian.superplots.plot.Plot;
 public class ActionPrivate extends BaseAction {
 
     public ActionPrivate(SuperPlotsPlugin main) {
-        super(main);
+        super(main, "private");
     }
 
     @Override

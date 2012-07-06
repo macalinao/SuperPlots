@@ -11,7 +11,7 @@ import com.simplyian.superplots.plot.Plot;
 public class ActionDisband extends BaseAction {
 
     public ActionDisband(SuperPlotsPlugin main) {
-        super(main);
+        super(main, "disband");
     }
 
     @Override

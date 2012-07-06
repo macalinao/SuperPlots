@@ -12,7 +12,7 @@ import com.simplyian.superplots.plot.Plot;
 public class ActionCoown extends BaseAction {
 
     public ActionCoown(SuperPlotsPlugin main) {
-        super(main);
+        super(main, "coown");
     }
 
     @Override

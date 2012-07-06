@@ -9,8 +9,20 @@ import com.simplyian.superplots.SuperPlotsPlugin;
 public abstract class BaseAction {
     protected final SuperPlotsPlugin main;
 
-    public BaseAction(SuperPlotsPlugin main) {
+    private String name;
+
+    public BaseAction(SuperPlotsPlugin main, String name) {
         this.main = main;
+        this.name = name;
+    }
+
+    /**
+     * Gets the name of the action.
+     * 
+     * @return
+     */
+    public String getName() {
+        return name;
     }
 
     /**

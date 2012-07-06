@@ -11,7 +11,7 @@ import com.simplyian.superplots.plot.Plot;
 public class ActionShrink extends BaseAction {
 
     public ActionShrink(SuperPlotsPlugin main) {
-        super(main);
+        super(main, "shrink");
     }
 
     @Override

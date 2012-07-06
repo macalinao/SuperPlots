@@ -15,7 +15,7 @@ import com.simplyian.superplots.plot.Plot;
 public class ActionCreate extends BaseAction {
 
     public ActionCreate(SuperPlotsPlugin main) {
-        super(main);
+        super(main, "create");
     }
 
     @Override

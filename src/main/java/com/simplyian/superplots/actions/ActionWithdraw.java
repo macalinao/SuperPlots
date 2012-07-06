@@ -11,7 +11,7 @@ import com.simplyian.superplots.plot.Plot;
 public class ActionWithdraw extends BaseAction {
 
     public ActionWithdraw(SuperPlotsPlugin main) {
-        super(main);
+        super(main, "withdraw");
     }
 
     @Override

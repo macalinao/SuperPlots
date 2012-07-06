@@ -105,8 +105,8 @@ public class PlotManager {
      * @param plot
      * @return True if the plot was in this plot manager
      */
-    public boolean destroyPlot(Plot plot) {
-        main.getEventFactory().callPlotDestroyEvent(plot);
+    public boolean disbandPlot(Plot plot) {
+        main.getEventFactory().callPlotDisbandEvent(plot);
         return plots.remove(plot);
     }
 
@@ -124,11 +124,6 @@ public class PlotManager {
             }
         }
         return null;
-    }
-
-    public void disbandPlot(Plot plot) {
-        // TODO Auto-generated method stub
-        
     }
 
 }

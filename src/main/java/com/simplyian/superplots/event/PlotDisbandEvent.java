@@ -4,10 +4,10 @@ import org.bukkit.event.HandlerList;
 
 import com.simplyian.superplots.plot.Plot;
 
-public class PlotDestroyEvent extends PlotEvent {
+public class PlotDisbandEvent extends PlotEvent {
     private static HandlerList handlers = new HandlerList();
 
-    public PlotDestroyEvent(Plot plot) {
+    public PlotDisbandEvent(Plot plot) {
         super(plot);
     }
 

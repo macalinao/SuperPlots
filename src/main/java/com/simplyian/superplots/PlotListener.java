@@ -5,6 +5,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 
+import com.simplyian.superplots.event.PlotBuildEvent;
 import com.simplyian.superplots.event.PlotInteractEvent;
 import com.simplyian.superplots.plot.Plot;
 
@@ -14,6 +15,19 @@ import com.simplyian.superplots.plot.Plot;
  * @author simplyianm
  */
 public class PlotListener implements Listener {
+    @EventHandler
+    public void onPlotBuild(PlotBuildEvent event) {
+        if (event.getPlot().isMember(event.getPlayer().getName())) {
+            return;
+        }
+
+        event.getPlayer().sendMessage(
+                MsgColor.ERROR + "You aren't allowed to build in "
+                        + MsgColor.ERROR_HILIGHT + event.getPlot().getName()
+                        + MsgColor.ERROR + ".");
+        event.setCancelled(true);
+    }
+
     @EventHandler
     public void onPlotInteract(PlotInteractEvent event) {
         Player player = event.getPlayer();

@@ -7,6 +7,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 import com.simplyian.superplots.event.SPEventFactory;
 import com.simplyian.superplots.listeners.MainListener;
+import com.simplyian.superplots.listeners.PlotListener;
 import com.simplyian.superplots.plot.PlotManager;
 
 /**
@@ -74,6 +75,7 @@ public class SuperPlots extends JavaPlugin {
 
     private void setupListeners() {
         Bukkit.getPluginManager().registerEvents(new MainListener(this), this);
+        Bukkit.getPluginManager().registerEvents(new PlotListener(this), this);
     }
 
     /**

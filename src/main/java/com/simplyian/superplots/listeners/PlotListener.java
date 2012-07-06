@@ -6,7 +6,10 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 
 import com.simplyian.superplots.MsgColor;
+import com.simplyian.superplots.SuperPlots;
 import com.simplyian.superplots.event.PlotBuildEvent;
+import com.simplyian.superplots.event.PlotEnterEvent;
+import com.simplyian.superplots.event.PlotExitEvent;
 import com.simplyian.superplots.event.PlotInteractEvent;
 import com.simplyian.superplots.plot.Plot;
 
@@ -16,6 +19,12 @@ import com.simplyian.superplots.plot.Plot;
  * @author simplyianm
  */
 public class PlotListener implements Listener {
+    private SuperPlots main;
+
+    public PlotListener(SuperPlots main) {
+        this.main = main;
+    }
+
     @EventHandler
     public void onPlotBuild(PlotBuildEvent event) {
         if (event.getPlot().isMember(event.getPlayer().getName())) {
@@ -27,6 +36,22 @@ public class PlotListener implements Listener {
                         + MsgColor.ERROR_HILIGHT + event.getPlot().getName()
                         + MsgColor.ERROR + ".");
         event.setCancelled(true);
+    }
+
+    @EventHandler
+    public void onPlotEnter(PlotEnterEvent event) {
+        event.getPlayer().sendMessage(
+                MsgColor.INFO + "You have entered "
+                        + MsgColor.INFO_HILIGHT + event.getPlot().getName()
+                        + MsgColor.INFO + ".");
+    }
+
+    @EventHandler
+    public void onPlotExit(PlotExitEvent event) {
+        event.getPlayer().sendMessage(
+                MsgColor.INFO + "You have left "
+                        + MsgColor.INFO_HILIGHT + event.getPlot().getName()
+                        + MsgColor.INFO + " and have entered wilderness.");
     }
 
     @EventHandler

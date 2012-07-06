@@ -1,13 +1,19 @@
-package com.simplyian.superplots;
+package com.simplyian.superplots.listeners;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import org.bukkit.Location;
 import org.bukkit.block.Block;
+import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.event.player.PlayerMoveEvent;
 
+import com.simplyian.superplots.SuperPlots;
 import com.simplyian.superplots.event.PlotBuildEvent;
 import com.simplyian.superplots.event.PlotInteractEvent;
 import com.simplyian.superplots.plot.Plot;
@@ -16,6 +22,10 @@ import com.simplyian.superplots.plot.Plot;
  * The main listener of the plugin.
  */
 public class MainListener implements Listener {
+    Map<String, Plot> pplots = new HashMap<String, Plot>();
+
+    Map<String, Block> pblocks = new HashMap<String, Block>();
+
     private SuperPlots main;
 
     public MainListener(SuperPlots main) {
@@ -64,6 +74,36 @@ public class MainListener implements Listener {
                 event, plot);
         if (ev.isCancelled()) {
             event.setCancelled(true);
+        }
+    }
+
+    @EventHandler
+    public void onPlayerMove(PlayerMoveEvent event) {
+        Player player = event.getPlayer();
+        Block last = pblocks.get(player.getName());
+        Block now = event.getTo().getBlock();
+
+        if (last != null && last.equals(now)) {
+            return;
+        }
+
+        Plot lastPlot = pplots.get(player.getName());
+        Plot plot = getPlotAt(now.getLocation());
+
+        if (last == null) {
+            pblocks.put(player.getName(), now);
+            last = now;
+        }
+
+        if (lastPlot == plot) {
+            return; // Moving within the same plot
+        }
+
+        pplots.put(player.getName(), plot);
+        if (lastPlot == null && plot != null) {
+            main.getEventFactory().callPlotEnterEvent(player, plot);
+        } else if (lastPlot != null && plot == null) {
+            main.getEventFactory().callPlotExitEvent(player, lastPlot);
         }
     }
 

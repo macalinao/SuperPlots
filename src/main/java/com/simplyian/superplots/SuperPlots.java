@@ -6,6 +6,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import com.simplyian.superplots.event.SPEventFactory;
+import com.simplyian.superplots.listeners.MainListener;
 import com.simplyian.superplots.plot.PlotManager;
 
 /**

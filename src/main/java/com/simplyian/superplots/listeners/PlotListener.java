@@ -1,10 +1,11 @@
-package com.simplyian.superplots;
+package com.simplyian.superplots.listeners;
 
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 
+import com.simplyian.superplots.MsgColor;
 import com.simplyian.superplots.event.PlotBuildEvent;
 import com.simplyian.superplots.event.PlotInteractEvent;
 import com.simplyian.superplots.plot.Plot;

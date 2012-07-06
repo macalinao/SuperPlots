@@ -1,5 +1,6 @@
 package com.simplyian.superplots.event;
 
+import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
@@ -35,6 +36,14 @@ public class SPEventFactory {
 
     public PlotDisbandEvent callPlotDisbandEvent(Plot plot) {
         return callEvent(new PlotDisbandEvent(plot));
+    }
+
+    public PlotEnterEvent callPlotEnterEvent(Player player, Plot plot) {
+        return callEvent(new PlotEnterEvent(player, plot));
+    }
+
+    public PlotExitEvent callPlotExitEvent(Player player, Plot plot) {
+        return callEvent(new PlotExitEvent(player, plot));
     }
 
     public PlotInteractEvent callPlotInteractEvent(PlayerInteractEvent event,

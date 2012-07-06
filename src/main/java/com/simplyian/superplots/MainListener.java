@@ -1,12 +1,15 @@
 package com.simplyian.superplots;
 
 import org.bukkit.Location;
+import org.bukkit.block.Block;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
+import org.bukkit.event.player.PlayerInteractEvent;
 
 import com.simplyian.superplots.event.PlotBuildEvent;
+import com.simplyian.superplots.event.PlotInteractEvent;
 import com.simplyian.superplots.plot.Plot;
 
 /**
@@ -40,6 +43,25 @@ public class MainListener implements Listener {
         }
         PlotBuildEvent ev = main.getEventFactory().callPlotBuildEvent(event,
                 plot);
+        if (ev.isCancelled()) {
+            event.setCancelled(true);
+        }
+    }
+
+    @EventHandler
+    public void onPlayerInteract(PlayerInteractEvent event) {
+        Block block = event.getClickedBlock();
+        if (block == null) {
+            return;
+        }
+
+        Plot plot = getPlotAt(block.getLocation());
+        if (plot == null) {
+            return;
+        }
+
+        PlotInteractEvent ev = main.getEventFactory().callPlotInteractEvent(
+                event, plot);
         if (ev.isCancelled()) {
             event.setCancelled(true);
         }

@@ -3,6 +3,7 @@ package com.simplyian.superplots.event;
 import org.bukkit.event.Event;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
+import org.bukkit.event.player.PlayerInteractEvent;
 
 import com.simplyian.superplots.SuperPlots;
 import com.simplyian.superplots.plot.Plot;
@@ -34,6 +35,12 @@ public class SPEventFactory {
 
     public PlotDisbandEvent callPlotDisbandEvent(Plot plot) {
         return callEvent(new PlotDisbandEvent(plot));
+    }
+
+    public PlotInteractEvent callPlotInteractEvent(PlayerInteractEvent event,
+            Plot plot) {
+        return callEvent(new PlotInteractEvent(event.getPlayer(),
+                event.getClickedBlock(), event.getAction(), plot));
     }
 
     private <T extends Event> T callEvent(T event) {

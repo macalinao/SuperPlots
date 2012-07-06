@@ -412,8 +412,7 @@ public class Plot {
      */
     public double influenceEdgeDistance(Location location) {
         return edgeDistance(location)
-                * SuperPlotsPlugin.getInstance().getSettings()
-                        .getInfluenceMultiplier();
+                * SuperPlots.getSettings().getInfluenceMultiplier();
     }
 
     /**

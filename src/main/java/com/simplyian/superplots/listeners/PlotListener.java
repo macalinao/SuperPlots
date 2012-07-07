@@ -31,6 +31,10 @@ public class PlotListener implements Listener {
             return;
         }
 
+        if (!event.getPlot().isProtected()) {
+            return;
+        }
+
         event.getPlayer().sendMessage(
                 MsgColor.ERROR + "You aren't allowed to build in "
                         + MsgColor.ERROR_HILIGHT + event.getPlot().getName()
@@ -41,23 +45,26 @@ public class PlotListener implements Listener {
     @EventHandler
     public void onPlotEnter(PlotEnterEvent event) {
         event.getPlayer().sendMessage(
-                MsgColor.INFO + "You have entered "
-                        + MsgColor.INFO_HILIGHT + event.getPlot().getName()
-                        + MsgColor.INFO + ".");
+                MsgColor.INFO + "You have entered " + MsgColor.INFO_HILIGHT
+                        + event.getPlot().getName() + MsgColor.INFO + ".");
     }
 
     @EventHandler
     public void onPlotExit(PlotExitEvent event) {
         event.getPlayer().sendMessage(
-                MsgColor.INFO + "You have left "
-                        + MsgColor.INFO_HILIGHT + event.getPlot().getName()
-                        + MsgColor.INFO + " and have entered wilderness.");
+                MsgColor.INFO + "You have left " + MsgColor.INFO_HILIGHT
+                        + event.getPlot().getName() + MsgColor.INFO
+                        + " and have entered wilderness.");
     }
 
     @EventHandler
     public void onPlotInteract(PlotInteractEvent event) {
         Player player = event.getPlayer();
         Plot plot = event.getPlot();
+        if (plot.isPublic()) {
+            return;
+        }
+
         if (plot.isMember(player.getName())) {
             return;
         }

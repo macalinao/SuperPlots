@@ -6,6 +6,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import com.simplyian.superplots.actions.ActionManager;
+import com.simplyian.superplots.command.PlotCommand;
 import com.simplyian.superplots.data.DataManager;
 import com.simplyian.superplots.event.SPEventFactory;
 import com.simplyian.superplots.listeners.MainListener;
@@ -55,6 +56,9 @@ public class SuperPlotsPlugin extends JavaPlugin {
         getLogger().log(Level.INFO, "Setting up action manager...");
         actionManager = new ActionManager(this);
 
+        getLogger().log(Level.INFO, "Setting up commands...");
+        setupCommands();
+
         getLogger().log(Level.INFO, "Setting up economy...");
         economy = new EconHook(this);
         economy.setupEconomy();
@@ -85,6 +89,10 @@ public class SuperPlotsPlugin extends JavaPlugin {
         eventFactory = null;
         settings = null;
         getLogger().log(Level.INFO, "SuperPlots disabled!");
+    }
+
+    private void setupCommands() {
+        getCommand("plot").setExecutor(new PlotCommand(this));
     }
 
     private void setupListeners() {

@@ -1,6 +1,8 @@
 package com.simplyian.superplots.actions;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import com.simplyian.superplots.SuperPlotsPlugin;
@@ -55,5 +57,14 @@ public class ActionManager {
      */
     public BaseAction getAction(String name) {
         return actions.get(name.toLowerCase());
+    }
+
+    /**
+     * Gets a list of all actions.
+     * 
+     * @return
+     */
+    public List<BaseAction> getActions() {
+        return new ArrayList<BaseAction>(actions.values());
     }
 }

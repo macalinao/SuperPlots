@@ -59,11 +59,22 @@ public class Plot {
     /**
      * @see PlotManager#createPlot
      */
-    Plot(String name, String owner, int size, Location center) {
+    public Plot(String name, String owner, int size, Location center) {
         this.name = name;
         this.owner = owner;
         this.size = size;
         this.center = center;
+    }
+    
+    /**
+     * For initial coowners/friends.
+     * 
+     * @param coowners
+     * @param friends
+     */
+    public Plot(Set<String> coowners, Set<String> friends) {
+        this.coowners = coowners;
+        this.friends = friends;
     }
 
     /**

@@ -10,9 +10,9 @@ import com.simplyian.superplots.data.DataManager;
 import com.simplyian.superplots.event.SPEventFactory;
 import com.simplyian.superplots.listeners.MainListener;
 import com.simplyian.superplots.listeners.PlotListener;
-import com.simplyian.superplots.plot.PerseveringPlotPersister;
 import com.simplyian.superplots.plot.PlotManager;
-import com.simplyian.superplots.plot.Taxman;
+import com.simplyian.superplots.task.PerseveringPlotPersister;
+import com.simplyian.superplots.task.Taxman;
 
 /**
  * SuperPlots main plugin class.

@@ -1,4 +1,4 @@
-package com.simplyian.superplots.plot;
+package com.simplyian.superplots.task;
 
 import java.util.logging.Level;
 

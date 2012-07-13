@@ -1,6 +1,7 @@
-package com.simplyian.superplots.plot;
+package com.simplyian.superplots.task;
 
 import com.simplyian.superplots.SuperPlotsPlugin;
+import com.simplyian.superplots.plot.Plot;
 
 /**
  * Yeah, I'm the taxman.

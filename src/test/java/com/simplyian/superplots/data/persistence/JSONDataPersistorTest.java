@@ -28,6 +28,7 @@ import com.google.common.collect.Sets;
 import com.simplyian.superplots.SuperPlots;
 import com.simplyian.superplots.SuperPlotsPlugin;
 import com.simplyian.superplots.plot.Plot;
+import com.simplyian.superplots.plot.PlotUpgrade;
 
 @RunWith(PowerMockRunner.class)
 @PrepareForTest(SuperPlots.class)
@@ -80,6 +81,9 @@ public class JSONDataPersistorTest {
         when(plot.getSize()).thenReturn(10);
         when(plot.isProtected()).thenReturn(true);
         when(plot.isPrivate()).thenReturn(false);
+        
+        Set<PlotUpgrade> upgrades = Sets.newHashSet(PlotUpgrade.TOWN);
+        when(plot.getUpgrades()).thenReturn(upgrades);
 
         JSONObject result = instance.jsonifyPlot(plot);
         try {
@@ -115,6 +119,13 @@ public class JSONDataPersistorTest {
 
             assertTrue(result.getBoolean("protect"));
             assertFalse(result.getBoolean("privacy"));
+            
+            JSONArray upgradesA = result.getJSONArray("upgrades");
+            Set<PlotUpgrade> upgradesS = new HashSet<PlotUpgrade>();
+            for (int i = 0; i < upgradesA.length(); i++) {
+                upgradesS.add(PlotUpgrade.valueOf(upgradesA.getString(i)));
+            }
+            assertTrue(upgradesS.contains(PlotUpgrade.TOWN));
 
         } catch (Exception e) {
             fail(e.toString());
@@ -152,6 +163,10 @@ public class JSONDataPersistorTest {
 
             json.put("protect", false);
             json.put("privacy", true);
+            
+            JSONArray upgrades = new JSONArray();
+            upgrades.put("TOWN");
+            json.put("upgrades", upgrades);
 
             // Now the test
             Plot plot = instance.dejsonifyPlot(json);
@@ -180,6 +195,8 @@ public class JSONDataPersistorTest {
 
             assertFalse(plot.isProtected());
             assertTrue(plot.isPrivate());
+            
+            assertTrue(plot.has(PlotUpgrade.TOWN));
         } catch (Exception e) {
             fail(e.toString());
         }

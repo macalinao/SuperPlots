@@ -21,6 +21,7 @@ import org.json.JSONObject;
 import com.simplyian.superplots.SuperPlots;
 import com.simplyian.superplots.SuperPlotsPlugin;
 import com.simplyian.superplots.plot.Plot;
+import com.simplyian.superplots.plot.PlotUpgrade;
 
 public class JSONDataPersistor implements DataPersistor {
     private final SuperPlotsPlugin main;
@@ -73,6 +74,12 @@ public class JSONDataPersistor implements DataPersistor {
             json.put("protect", plot.isProtected());
             json.put("privacy", plot.isPrivate());
 
+            JSONArray upgrades = new JSONArray();
+            for (PlotUpgrade upgrade : plot.getUpgrades()) {
+                upgrades.put(upgrade.name());
+            }
+            json.put("upgrades", upgrades);
+
         } catch (JSONException e) {
             SuperPlotsPlugin.getInstance().getLogger()
                     .log(Level.SEVERE, "Could not serialize plot to JSON!", e);
@@ -118,6 +125,22 @@ public class JSONDataPersistor implements DataPersistor {
             boolean protect = json.getBoolean("protect");
             boolean privacy = json.getBoolean("privacy");
 
+            Set<PlotUpgrade> upgrades = new HashSet<PlotUpgrade>();
+            JSONArray jsonUpgrades = json.getJSONArray("upgrades");
+            for (int i = 0; i < jsonUpgrades.length(); i++) {
+                String upgradeStr = jsonUpgrades.getString(i);
+                try {
+                    PlotUpgrade upgrade = PlotUpgrade.valueOf(upgradeStr);
+                    upgrades.add(upgrade);
+                } catch (IllegalArgumentException ex) {
+                    main.getLogger().log(
+                            Level.WARNING,
+                            "Invalid Plot Upgrade encountered: " + upgradeStr
+                                    + ". Skipping.", ex);
+                    continue;
+                }
+            }
+
             Plot plot = new Plot(coowners, friends);
             plot.setName(name);
             plot.setCenter(center);
@@ -126,6 +149,7 @@ public class JSONDataPersistor implements DataPersistor {
             plot.setPrivate(privacy);
             plot.setProtected(protect);
             plot.setSize(size);
+            plot.addUpgrades(upgrades);
 
             return plot;
         } catch (JSONException e) {

@@ -1,5 +1,6 @@
 package com.simplyian.superplots.plot;
 
+import java.util.Collection;
 import java.util.EnumSet;
 import java.util.HashSet;
 import java.util.Set;
@@ -458,6 +459,24 @@ public class Plot {
      */
     public void removeUpgrade(PlotUpgrade upgrade) {
         upgrades.remove(upgrade);
+    }
+    
+    /**
+     * Gets a set of all plot upgrades.
+     * 
+     * @return
+     */
+    public Set<PlotUpgrade> getUpgrades() {
+        return new HashSet<PlotUpgrade>(upgrades);
+    }
+    
+    /**
+     * Adds a collection of PlotUpgrades to the plot.
+     * 
+     * @param upgrades
+     */
+    public void addUpgrades(Collection<PlotUpgrade> upgrades) {
+        this.upgrades.addAll(upgrades);
     }
 
     /**

@@ -11,6 +11,7 @@ import java.util.List;
 
 import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.PlayerInventory;
@@ -38,7 +39,7 @@ public class ActionCreateTest {
 
         econ = mock(EconHook.class);
         when(main.getEconomy()).thenReturn(econ);
-        
+
         plotManager = mock(PlotManager.class);
         when(main.getPlotManager()).thenReturn(plotManager);
 
@@ -142,12 +143,10 @@ public class ActionCreateTest {
         Location loc = new Location(null, 0, 0, 0);
         when(player.getLocation()).thenReturn(loc);
         when(econ.getBalance(player.getName())).thenReturn(100.0);
-        
+
         PlayerInventory inv = mock(PlayerInventory.class);
         when(player.getInventory()).thenReturn(inv);
-        ItemStack[] contents = new ItemStack[]{
-                new ItemStack(Material.DIRT, 1)
-        };
+        ItemStack[] contents = new ItemStack[] { new ItemStack(Material.DIRT, 1) };
         when(inv.getContents()).thenReturn(contents);
 
         List<String> args = Arrays.asList("test", "plot!");
@@ -168,12 +167,10 @@ public class ActionCreateTest {
         Location loc = new Location(null, 0, 0, 0);
         when(player.getLocation()).thenReturn(loc);
         when(econ.getBalance(player.getName())).thenReturn(1000.0);
-        
+
         PlayerInventory inv = mock(PlayerInventory.class);
         when(player.getInventory()).thenReturn(inv);
-        ItemStack[] contents = new ItemStack[]{
-                new ItemStack(Material.DIRT, 1)
-        };
+        ItemStack[] contents = new ItemStack[] { new ItemStack(Material.DIRT, 1) };
         when(inv.getContents()).thenReturn(contents);
 
         List<String> args = Arrays.asList("test", "plot!");
@@ -191,15 +188,17 @@ public class ActionCreateTest {
                 closePlot);
         when(plotManager.getPlotByName("asdf")).thenReturn(closePlot);
 
-        Location loc = new Location(null, 0, 0, 0);
+        Location loc = mock(Location.class);
         when(player.getLocation()).thenReturn(loc);
+        Block block = mock(Block.class);
+        when(loc.getBlock()).thenReturn(block);
+        when(block.getLocation()).thenReturn(loc);
         when(econ.getBalance(player.getName())).thenReturn(1000.0);
-        
+
         PlayerInventory inv = mock(PlayerInventory.class);
         when(player.getInventory()).thenReturn(inv);
-        ItemStack[] contents = new ItemStack[]{
-                new ItemStack(Material.DIAMOND, 1)
-        };
+        ItemStack[] contents = new ItemStack[] { new ItemStack(
+                Material.DIAMOND, 1) };
         when(inv.getContents()).thenReturn(contents);
 
         List<String> args = Arrays.asList("test", "plot!");

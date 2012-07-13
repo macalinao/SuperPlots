@@ -457,7 +457,7 @@ public class Plot {
      * @return
      */
     public boolean contains(Location location) {
-        return distanceSquared(location) < (getSize() * getSize());
+        return distanceSquared(location) < (size * size);
     }
 
     /**

@@ -122,7 +122,8 @@ public class ActionCreate extends BaseAction {
         }
 
         Plot plot = main.getPlotManager().createPlot(name, player.getName(),
-                main.getSettings().getInitialPlotSize(), player.getLocation());
+                main.getSettings().getInitialPlotSize(),
+                player.getLocation().getBlock().getLocation());
         player.sendMessage(MsgColor.SUCCESS
                 + "Your plot has been created successfully. Enjoy!");
     }

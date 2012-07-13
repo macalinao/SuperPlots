@@ -1,6 +1,13 @@
 package com.simplyian.superplots.data.persistence;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 import java.util.logging.Level;
@@ -17,14 +24,16 @@ import com.simplyian.superplots.plot.Plot;
 
 public class JSONDataPersistor implements DataPersistor {
     private final SuperPlotsPlugin main;
+    private final File plotFile;
 
     public JSONDataPersistor(SuperPlotsPlugin main) {
         this.main = main;
+        this.plotFile = new File(main.getDataFolder(), "plots.json");
     }
 
     @Override
     public void savePlot(Plot plot) {
-        JSONObject json = jsonifyPlot(plot);
+        // too slow to support
     }
 
     /**
@@ -131,14 +140,80 @@ public class JSONDataPersistor implements DataPersistor {
 
     @Override
     public List<Plot> loadPlots() {
-        // TODO Auto-generated method stub
-        return null;
+        List<Plot> list = new ArrayList<Plot>();
+        if (!plotFile.exists()) {
+            try {
+                plotFile.createNewFile();
+            } catch (IOException ex) {
+                main.getLogger().log(Level.SEVERE,
+                        "Could not create plot file.", ex);
+                return list;
+            }
+        }
+
+        FileInputStream fis;
+        try {
+            fis = new FileInputStream(plotFile);
+        } catch (FileNotFoundException e) {
+            main.getLogger().log(Level.SEVERE,
+                    "Could not load plot file (File not found)", e);
+            return null;
+        }
+
+        JSONObject object = new JSONObject(fis);
+        Iterator<?> it = object.keys();
+        while (it.hasNext()) {
+            String key = it.next().toString();
+
+            JSONObject plotJson;
+            try {
+                plotJson = object.getJSONObject(key);
+            } catch (JSONException e) {
+                main.getLogger().log(Level.SEVERE,
+                        "Unable to retrieve plot '" + key + "' from JSON", e);
+                continue;
+            }
+
+            Plot plot = dejsonifyPlot(plotJson);
+            list.add(plot);
+        }
+        return list;
     }
 
     @Override
     public void savePlots(List<Plot> plots) {
-        // TODO Auto-generated method stub
+        JSONObject json = new JSONObject();
+        for (Plot plot : plots) {
+            JSONObject plotJson = jsonifyPlot(plot);
+            try {
+                json.put(plotJson.getString("name"), plotJson);
+            } catch (JSONException e) {
+                main.getLogger().log(
+                        Level.SEVERE,
+                        "Could not insert plot '" + plot.getName()
+                                + "' into JSON.", e);
+                continue;
+            }
+        }
 
+        if (!plotFile.exists()) {
+            try {
+                plotFile.createNewFile();
+            } catch (IOException ex) {
+                main.getLogger().log(Level.SEVERE,
+                        "Could not create plot file.", ex);
+                return;
+            }
+        }
+        PrintWriter out = null;
+        try {
+            out = new PrintWriter(plotFile);
+        } catch (FileNotFoundException e) {
+            main.getLogger().log(Level.SEVERE,
+                    "Could not find the plot file to save to!", e);
+        }
+
+        out.print(json.toString());
     }
 
 }

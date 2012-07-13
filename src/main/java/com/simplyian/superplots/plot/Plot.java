@@ -479,6 +479,13 @@ public class Plot {
     public void disband() {
         SuperPlots.getPlotManager().disbandPlot(this);
     }
+    
+    /**
+     * Saves this plot.
+     */
+    public void save() {
+        SuperPlots.getDataManager().getPersistor().savePlot(this);
+    }
 
     /**
      * Returns true if the name is valid.

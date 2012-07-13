@@ -65,6 +65,8 @@ public class SuperPlotsPlugin extends JavaPlugin {
 
         getLogger().log(Level.INFO, "Setting up plots...");
         plotManager = new PlotManager(this);
+        getLogger().log(Level.INFO, "  Loading plots...");
+        plotManager.loadAll();
 
         getLogger().log(Level.INFO, "Setting up events...");
         eventFactory = new SPEventFactory(this);

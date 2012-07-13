@@ -126,4 +126,18 @@ public class PlotManager {
         return null;
     }
 
+    /**
+     * Loads all saved plots into this PlotManager.
+     */
+    public void loadAll() {
+        plots = main.getDataManager().getPersistor().loadPlots();
+    }
+
+    /**
+     * Saves all plots.
+     */
+    public void saveAll() {
+        main.getDataManager().getPersistor().savePlots(getPlots());
+    }
+
 }

@@ -1,5 +1,6 @@
 package com.simplyian.superplots.plot;
 
+import java.util.EnumSet;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -57,6 +58,11 @@ public class Plot {
     private boolean privacy = true;
 
     /**
+     * Contains plot upgrades.
+     */
+    private EnumSet<PlotUpgrade> upgrades = EnumSet.noneOf(PlotUpgrade.class);
+
+    /**
      * @see PlotManager#createPlot
      */
     public Plot(String name, String owner, int size, Location center) {
@@ -65,7 +71,7 @@ public class Plot {
         this.size = size;
         this.center = center;
     }
-    
+
     /**
      * For initial coowners/friends.
      * 
@@ -410,19 +416,58 @@ public class Plot {
      * @return
      */
     public double edgeDistance(Location other) {
-        return distance(other) - (double) getSize();
+        return distance(other) - size;
     }
 
     /**
      * Gets the distance between the closest edge of the influence of this plot
      * and the given location.
      * 
-     * @param location
+     * @param other
      * @return
      */
-    public double influenceEdgeDistance(Location location) {
-        return edgeDistance(location)
-                * SuperPlots.getSettings().getInfluenceMultiplier();
+    public double influenceEdgeDistance(Location other) {
+        return distance(other) - (size * getInfluenceMultiplier());
+    }
+
+    /**
+     * Gets the multiplier of influence for this plot.
+     * 
+     * @return
+     */
+    public double getInfluenceMultiplier() {
+        if (has(PlotUpgrade.TOWN)) {
+            return SuperPlots.getSettings().getTownInfluenceMultiplier();
+        }
+        return SuperPlots.getSettings().getInfluenceMultiplier();
+    }
+
+    /**
+     * Adds the given upgrade to the plot.
+     * 
+     * @param upgrade
+     */
+    public void addUpgrade(PlotUpgrade upgrade) {
+        upgrades.add(upgrade);
+    }
+
+    /**
+     * Removes the given upgrade from the plot.
+     * 
+     * @param upgrade
+     */
+    public void removeUpgrade(PlotUpgrade upgrade) {
+        upgrades.remove(upgrade);
+    }
+
+    /**
+     * Returns true if the plot has the given upgrade.
+     * 
+     * @param upgrade
+     * @return
+     */
+    public boolean has(PlotUpgrade upgrade) {
+        return upgrades.contains(upgrade);
     }
 
     /**
@@ -479,7 +524,7 @@ public class Plot {
     public void disband() {
         SuperPlots.getPlotManager().disbandPlot(this);
     }
-    
+
     /**
      * Saves this plot.
      */

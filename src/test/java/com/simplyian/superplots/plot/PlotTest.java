@@ -39,6 +39,8 @@ public class PlotTest {
         settings = mock(SPSettings.class);
         when(SuperPlots.getSettings()).thenReturn(settings);
         when(settings.getMinimumPlotSize()).thenReturn(5);
+        when(settings.getInfluenceMultiplier()).thenReturn(1.5);
+        when(settings.getTownInfluenceMultiplier()).thenReturn(2.0);
 
         World world = mock(World.class);
         Location center = new Location(world, 3, 4, 5);
@@ -204,6 +206,29 @@ public class PlotTest {
 
         double expected = 4.0;
         double result = plot.edgeDistance(me);
+
+        assertEquals(expected, result, 0.1);
+    }
+
+    @Test
+    public void test_influenceEdgeDistance() {
+        plot.setSize(1);
+        Location me = new Location(plot.getCenter().getWorld(), 0, 0, 5);
+
+        double expected = 3.5;
+        double result = plot.influenceEdgeDistance(me);
+
+        assertEquals(expected, result, 0.1);
+    }
+
+    @Test
+    public void test_influenceEdgeDistance_town() {
+        plot.setSize(1);
+        plot.addUpgrade(PlotUpgrade.TOWN);
+        Location me = new Location(plot.getCenter().getWorld(), 0, 0, 5);
+
+        double expected = 3.0;
+        double result = plot.influenceEdgeDistance(me);
 
         assertEquals(expected, result, 0.1);
     }

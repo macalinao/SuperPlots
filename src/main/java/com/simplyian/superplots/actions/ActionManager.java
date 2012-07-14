@@ -37,6 +37,7 @@ public class ActionManager {
         addAction(new ActionRename(main));
         addAction(new ActionShrink(main));
         addAction(new ActionUnprotect(main));
+        addAction(new ActionUpgrade(main));
         addAction(new ActionWithdraw(main));
     }
 
